@@ -1,0 +1,34 @@
+{
+    "name": "laravelmail/laravelmail",
+    "description": "Embeddable email-marketing engine for Laravel: subscribers, tags, templates, campaigns and suppression, with sending off by default.",
+    "type": "library",
+    "license": "proprietary",
+    "keywords": ["laravel", "email", "campaigns", "newsletter"],
+    "require": {
+        "php": "^8.3",
+        "illuminate/contracts": "^12.0|^13.0",
+        "illuminate/database": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "illuminate/mail": "^12.0|^13.0",
+        "illuminate/queue": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": { "LaravelMail\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "LaravelMail\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "laravel": {
+            "providers": ["LaravelMail\\LaravelMailServiceProvider"]
+        }
+    },
+    "scripts": { "test": "vendor/bin/phpunit" },
+    "config": { "sort-packages": true },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
