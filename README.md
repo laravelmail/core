@@ -1,8 +1,8 @@
-# laravelmail/laravelmail
+# laravelmail/core
 
 Embeddable email-marketing engine for Laravel. First beta slice: subscribers, tags, templates, campaigns, suppression and a gated dispatcher. Private for now (no Packagist release until the owner says so).
 
-Requires PHP 8.3+ and Laravel 12 or 13.
+Requires PHP 8.4+ and Laravel 13.
 
 ## Safety: installing never sends
 
@@ -11,7 +11,7 @@ Requiring the package does not send mail, schedule jobs, process IMAP, register 
 ## Install
 
 ```bash
-composer require laravelmail/laravelmail   # private repo: add a vcs repository entry first
+composer require laravelmail/core   # private repo: add a vcs repository entry first
 php artisan laravelmail:install            # publishes config + migrations, enables nothing
 php artisan migrate
 php artisan laravelmail:doctor             # read-only check

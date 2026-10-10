@@ -6,10 +6,28 @@ return [
     | Nothing is scheduled, no routes are registered, no processors run.
     | Every capability below is off until you switch it on explicitly.
     */
+    // Feature flags. All default OFF. `sending` is the master delivery switch.
+    'features' => [
+        'sending' => env('LARAVELMAIL_SENDING_ENABLED', false),
+        'tracking' => false,
+        'webhooks' => false,
+        'automations' => false,
+        'sms' => false,
+        'forms' => false,
+        'rss' => false,
+        'scoring' => false,
+        'ai' => false,
+    ],
+
+    // Email validation client. Disabled by default; no endpoint is hardcoded.
+    'validation' => [
+        'enabled' => env('LARAVELMAIL_VALIDATION_ENABLED', false),
+        'url' => env('LARAVELMAIL_VALIDATION_URL'),
+        'token' => env('LARAVELMAIL_VALIDATION_TOKEN'),
+    ],
+
     'sending' => [
-        // Master switch. While false, CampaignDispatcher refuses to queue or send anything.
-        'enabled' => env('LARAVELMAIL_SENDING_ENABLED', false),
-        // Laravel mailer name to use; null = host default mailer.
+        // Named host mailer (null = host default), or an inline transport array passed to Mail::build().
         'mailer' => env('LARAVELMAIL_MAILER'),
         'queue' => env('LARAVELMAIL_QUEUE', 'default'),
         'connection' => env('LARAVELMAIL_QUEUE_CONNECTION'),
@@ -31,6 +49,8 @@ return [
 
     // Class implementing LaravelMail\Contracts\WorkspaceResolver. Default: single workspace (null id).
     'workspace_resolver' => \LaravelMail\Services\NullWorkspaceResolver::class,
+
+    'user_resolver' => \LaravelMail\Services\NullUserResolver::class,
 
     // Default sender, used when a campaign has none.
     'from' => [

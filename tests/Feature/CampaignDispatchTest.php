@@ -56,7 +56,7 @@ class CampaignDispatchTest extends TestCase
 
     public function test_dispatch_sends_rendered_mail_when_enabled(): void
     {
-        config(['laravelmail.sending.enabled' => true]);
+        config(['laravelmail.features.sending' => true]);
         Mail::fake();
         $camp = $this->campaign();
 
@@ -71,13 +71,13 @@ class CampaignDispatchTest extends TestCase
 
     public function test_job_rechecks_gate_at_send_time(): void
     {
-        config(['laravelmail.sending.enabled' => true]);
+        config(['laravelmail.features.sending' => true]);
         Queue::fake();
         $camp = $this->campaign();
         app(CampaignDispatcher::class)->dispatch($camp);
         Queue::assertPushed(SendCampaignMessage::class, 2);
 
-        config(['laravelmail.sending.enabled' => false]);
+        config(['laravelmail.features.sending' => false]);
         Mail::fake();
         $id = $camp->messages()->first()->id;
         (new SendCampaignMessage($id))->handle(app(\LaravelMail\Services\Renderer::class));
@@ -86,7 +86,7 @@ class CampaignDispatchTest extends TestCase
 
     public function test_only_drafts_dispatch_and_no_double_send(): void
     {
-        config(['laravelmail.sending.enabled' => true]);
+        config(['laravelmail.features.sending' => true]);
         Mail::fake();
         $camp = $this->campaign();
         $d = app(CampaignDispatcher::class);

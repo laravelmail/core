@@ -30,7 +30,7 @@ class SendCampaignMessage implements ShouldQueue
     public function handle(Renderer $renderer): void
     {
         // Safety gate is re-checked at send time, not just at queue time.
-        if (! config('laravelmail.sending.enabled')) {
+        if (! config('laravelmail.features.sending')) {
             return;
         }
 
@@ -50,7 +50,7 @@ class SendCampaignMessage implements ShouldQueue
 
         $campaign = $message->campaign;
         try {
-            Mail::mailer(config('laravelmail.sending.mailer'))
+            $this->mailer()
                 ->to($subscriber->email)
                 ->send(new CampaignMail(
                     $renderer->renderSubject($campaign, $subscriber),
@@ -64,6 +64,14 @@ class SendCampaignMessage implements ShouldQueue
         }
 
         $this->finish($campaign);
+    }
+
+    /** Package-owned mailer: an inline transport array (Mail::build) or a named host mailer. Never rewrites host mail config. */
+    private function mailer()
+    {
+        $m = config('laravelmail.sending.mailer');
+
+        return is_array($m) ? Mail::build($m) : Mail::mailer($m);
     }
 
     private function finish(Campaign $campaign): void

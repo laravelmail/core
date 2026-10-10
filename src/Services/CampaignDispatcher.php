@@ -34,7 +34,7 @@ class CampaignDispatcher
      */
     public function dispatch(Campaign $campaign): int
     {
-        if (! config('laravelmail.sending.enabled')) {
+        if (! config('laravelmail.features.sending')) {
             throw SendingDisabledException::make();
         }
         if (! $campaign->isDraft()) {

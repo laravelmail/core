@@ -10,6 +10,6 @@ class SendingDisabledException extends RuntimeException
 {
     public static function make(): self
     {
-        return new self('LaravelMail sending is disabled. Set laravelmail.sending.enabled (LARAVELMAIL_SENDING_ENABLED=true) to allow it.');
+        return new self('LaravelMail sending is disabled. Set laravelmail.features.sending (LARAVELMAIL_SENDING_ENABLED=true) to allow it.');
     }
 }

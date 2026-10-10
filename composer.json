@@ -1,34 +1,58 @@
 {
-    "name": "laravelmail/laravelmail",
+    "name": "laravelmail/core",
     "description": "Embeddable email-marketing engine for Laravel: subscribers, tags, templates, campaigns and suppression, with sending off by default.",
     "type": "library",
     "license": "proprietary",
-    "keywords": ["laravel", "email", "campaigns", "newsletter"],
+    "keywords": [
+        "laravel",
+        "email",
+        "campaigns",
+        "newsletter"
+    ],
     "require": {
-        "php": "^8.3",
-        "illuminate/contracts": "^12.0|^13.0",
-        "illuminate/database": "^12.0|^13.0",
-        "illuminate/support": "^12.0|^13.0",
-        "illuminate/mail": "^12.0|^13.0",
-        "illuminate/queue": "^12.0|^13.0"
+        "illuminate/console": "^13.0",
+        "illuminate/contracts": "^13.0",
+        "illuminate/database": "^13.0",
+        "illuminate/mail": "^13.0",
+        "illuminate/queue": "^13.0",
+        "illuminate/routing": "^13.0",
+        "illuminate/support": "^13.0",
+        "illuminate/validation": "^13.0",
+        "php": "^8.4"
     },
     "require-dev": {
-        "orchestra/testbench": "^10.0|^11.0",
-        "phpunit/phpunit": "^11.0|^12.0"
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.0"
     },
     "autoload": {
-        "psr-4": { "LaravelMail\\": "src/" }
+        "psr-4": {
+            "LaravelMail\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "LaravelMail\\Tests\\": "tests/" }
+        "psr-4": {
+            "LaravelMail\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "laravel": {
-            "providers": ["LaravelMail\\LaravelMailServiceProvider"]
+            "providers": [
+                "LaravelMail\\LaravelMailServiceProvider"
+            ]
         }
     },
-    "scripts": { "test": "vendor/bin/phpunit" },
-    "config": { "sort-packages": true },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "suggest": {
+        "neuron-core/neuron-ai": "AI companion package (laravelmail/ai, later)",
+        "webklex/laravel-imap": "Mailbox companion package (later)",
+        "aws/aws-sdk-php-laravel": "SES provider",
+        "mailgun/mailgun-php": "Mailgun provider"
+    }
 }

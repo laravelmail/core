@@ -21,7 +21,7 @@ class DoctorCommand extends Command
             $ok = $ok && $has;
             $this->line(($has ? '[ok]   ' : '[miss] ').$p.$t);
         }
-        $this->line('Sending: '.(config('laravelmail.sending.enabled') ? 'ENABLED' : 'disabled (safe default)'));
+        $this->line('Sending: '.(config('laravelmail.features.sending') ? 'ENABLED' : 'disabled (safe default)'));
         $this->line('Routes: '.(config('laravelmail.routes.enabled') ? 'enabled' : 'disabled'));
 
         return $ok ? self::SUCCESS : self::FAILURE;

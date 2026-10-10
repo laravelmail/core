@@ -12,7 +12,7 @@ class InstallSafetyTest extends TestCase
 {
     public function test_sending_is_disabled_by_default(): void
     {
-        $this->assertFalse(config('laravelmail.sending.enabled'));
+        $this->assertFalse(config('laravelmail.features.sending'));
     }
 
     public function test_install_schedules_nothing_and_registers_no_routes(): void

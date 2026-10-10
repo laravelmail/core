@@ -7,6 +7,7 @@ namespace LaravelMail;
 use Illuminate\Support\ServiceProvider;
 use LaravelMail\Console\DoctorCommand;
 use LaravelMail\Console\InstallCommand;
+use LaravelMail\Contracts\UserResolver;
 use LaravelMail\Contracts\WorkspaceResolver;
 
 /**
@@ -19,6 +20,7 @@ class LaravelMailServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/laravelmail.php', 'laravelmail');
 
+        $this->app->bind(UserResolver::class, fn ($app) => $app->make(config('laravelmail.user_resolver')));
         $this->app->bind(WorkspaceResolver::class, fn ($app) => $app->make(config('laravelmail.workspace_resolver')));
     }
 
