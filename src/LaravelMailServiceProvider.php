@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaravelMail;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelMail\Console\AutomationRunCommand;
 use LaravelMail\Console\DoctorCommand;
 use LaravelMail\Console\InstallCommand;
 use LaravelMail\Contracts\UserResolver;
@@ -35,7 +36,7 @@ class LaravelMailServiceProvider extends ServiceProvider
         }
 
         if ($this->app->runningInConsole()) {
-            $this->commands([InstallCommand::class, DoctorCommand::class]);
+            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class]);
             $this->publishes([__DIR__.'/../config/laravelmail.php' => config_path('laravelmail.php')], 'laravelmail-config');
             $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'laravelmail-migrations');
         }

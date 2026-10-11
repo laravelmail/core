@@ -86,6 +86,16 @@ Skips suppressed addresses, never re-subscribes someone who unsubscribed, sends 
 - `BlacklistChecker` + `DnsblResolver`: DNSBL lookups, log-only.
 - `FlowGraphValidator`: validates automation flow graphs (dangling or self edges, loops, missing conditions, non-https webhooks). The flow engine itself is not extracted yet.
 
+## Automations (slice 4, opt-in)
+
+`LARAVELMAIL_AUTOMATIONS_ENABLED=true`. Flows are `automation_steps` (node_key / next_key / alt_key) with `FlowGraphValidator` for checks. Steps: wait, condition, wait_until, goal, add_tag, remove_tag, update_field, webhook (https, no private addresses, no redirects), send_email, exit. `FlowEngine::enrol()` starts a journey (active automations only, never for unsubscribed or suppressed people). `FlowEngine::tick()` processes due journeys; schedule it yourself with `LaravelMail::schedule($schedule)` or `php artisan laravelmail:automation-run`. `send_email` needs `features.sending` too; with sending off the journey parks and nothing goes out. Unsupported step types (e.g. `send_sms`) fail the journey rather than being skipped.
+
+## Public signup and preference center (slice 4, opt-in)
+
+`LARAVELMAIL_FORMS_ENABLED=true` with `routes.enabled`:
+- `POST {prefix}/subscribe/{uuid}` for tags with `enablePublicSignup()`. Throttled, optional origin allowlist, honeypot field `website`, same answer for new and existing addresses. Double opt-in stores a pending row and sends the confirmation only when `features.sending` is on.
+- Signed JSON preference center at `{prefix}/preferences/{subscriber}` (topics are tags with `preference_topic`; internal tags cannot be changed; suppressed addresses cannot resubscribe).
+
 ## Not in this slice
 
 Automations, AI, SMS, IMAP inbox processing, tracking, A/B tests, segments, UI. They stay in the hosted app and will be extracted behind their own disabled-by-default flags. See `docs/EXTRACTION.md`.

@@ -50,7 +50,7 @@ class SendCampaignMessage implements ShouldQueue
 
         $campaign = $message->campaign;
         try {
-            $this->mailer()
+            app(\LaravelMail\Services\MailerFactory::class)->make($this->messageId)
                 ->to($subscriber->email)
                 ->send(new CampaignMail(
                     $renderer->renderSubject($campaign, $subscriber),
@@ -78,16 +78,6 @@ class SendCampaignMessage implements ShouldQueue
         }
 
         return $html;
-    }
-
-    /** Package-owned mailer: an inline transport array (Mail::build) or a named host mailer. Never rewrites host mail config. */
-    private function mailer()
-    {
-        $pool = array_values((array) config('laravelmail.sending.pool', []));
-        // Round-robin rotation across the pool (named mailers or inline transport arrays), keyed by message id.
-        $m = $pool !== [] ? $pool[$this->messageId % count($pool)] : config('laravelmail.sending.mailer');
-
-        return is_array($m) ? Mail::build($m) : Mail::mailer($m);
     }
 
     private function finish(Campaign $campaign): void

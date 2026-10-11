@@ -15,7 +15,8 @@ class LaravelMail
 {
     public static function schedule(Schedule $schedule): void
     {
-        // Slice 1 has no scheduled commands. Later slices register campaign dispatch, automations, etc. here,
-        // each guarded by config('laravelmail.features.*').
+        if (config('laravelmail.features.automations')) {
+            $schedule->command('laravelmail:automation-run')->everyMinute()->withoutOverlapping();
+        }
     }
 }

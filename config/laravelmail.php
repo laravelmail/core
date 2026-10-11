@@ -11,9 +11,9 @@ return [
         'sending' => env('LARAVELMAIL_SENDING_ENABLED', false),
         'tracking' => env('LARAVELMAIL_TRACKING_ENABLED', false), // needs routes.enabled
         'webhooks' => env('LARAVELMAIL_WEBHOOKS_ENABLED', false), // needs routes.enabled
-        'automations' => false,
+        'automations' => env('LARAVELMAIL_AUTOMATIONS_ENABLED', false),
         'sms' => false,
-        'forms' => false,
+        'forms' => env('LARAVELMAIL_FORMS_ENABLED', false), // public signup + preference center; needs routes.enabled
         'rss' => false,
         'scoring' => false,
         'ai' => false,
@@ -56,6 +56,7 @@ return [
         'prefix' => 'laravelmail',
         'middleware' => ['web'],
         'webhook_middleware' => ['api'],
+        'public_throttle' => '10,1', // per-IP limit for public signup (requests,minutes)
     ],
 
     // Table prefix, so we never collide with host tables.
