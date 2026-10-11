@@ -139,3 +139,8 @@ an API write never re-subscribes an unsubscribed address and refuses suppressed 
 ## A/B tests
 
 Give a draft campaign two or more variants (`AbTestService::define()` or `PUT /api/v1/campaigns/{id}/variants`). Each variant overrides the subject and/or content and has a weight (1-100). At dispatch every recipient is placed in a variant by a stable hash, so re-dispatch never moves anyone. `GET /api/v1/campaigns/{id}/variants/results` (or `AbTestService::results()` / `leader()`) shows sent, opens, clicks and rates per variant. Opens and clicks need `features.tracking`. The package does not auto-send a winner; that stays an explicit decision.
+
+
+## Bulk subscriber management
+
+API (`subscribers:write` / `subscribers:read`): `POST /subscribers/import` (CSV as `file` up to 10 MB or `csv`, optional `tags`), `GET /subscribers/export?tag=&status=` (streamed CSV; formula-looking cells are prefixed with `'`), `POST /subscribers/bulk` with `action` of `tag|untag|unsubscribe|delete`, a selection (`ids`, `tag`, `status`, `email_contains`; an empty selection is refused) and `dry_run` to preview the count. CLI: `php artisan laravelmail:export path.csv --tag= --status=`.

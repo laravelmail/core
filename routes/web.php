@@ -62,38 +62,42 @@ if (config('laravelmail.features.api')) {
     ], function () {
         $a = fn (string $ability) => 'laravelmail.token:'.$ability;
 
+        // Fixed paths before subscribers/{id}.
+        Route::post('subscribers/import', [Api\BulkSubscribersController::class, 'import'])->middleware($a('subscribers:write'))->name('subscribers.import');
+        Route::get('subscribers/export', [Api\BulkSubscribersController::class, 'export'])->middleware($a('subscribers:read'))->name('subscribers.export');
+        Route::post('subscribers/bulk', [Api\BulkSubscribersController::class, 'bulk'])->middleware($a('subscribers:write'))->name('subscribers.bulk');
         Route::get('subscribers', [Api\SubscribersController::class, 'index'])->middleware($a('subscribers:read'))->name('subscribers.index');
         Route::post('subscribers', [Api\SubscribersController::class, 'store'])->middleware($a('subscribers:write'))->name('subscribers.store');
-        Route::get('subscribers/{id}', [Api\SubscribersController::class, 'show'])->middleware($a('subscribers:read'))->name('subscribers.show');
-        Route::patch('subscribers/{id}', [Api\SubscribersController::class, 'update'])->middleware($a('subscribers:write'))->name('subscribers.update');
-        Route::delete('subscribers/{id}', [Api\SubscribersController::class, 'destroy'])->middleware($a('subscribers:write'))->name('subscribers.destroy');
-        Route::post('subscribers/{id}/tags', [Api\SubscribersController::class, 'attachTags'])->middleware($a('subscribers:write'))->name('subscribers.tags.attach');
-        Route::delete('subscribers/{id}/tags', [Api\SubscribersController::class, 'detachTags'])->middleware($a('subscribers:write'))->name('subscribers.tags.detach');
+        Route::get('subscribers/{id}', [Api\SubscribersController::class, 'show'])->middleware($a('subscribers:read'))->whereNumber('id')->name('subscribers.show');
+        Route::patch('subscribers/{id}', [Api\SubscribersController::class, 'update'])->middleware($a('subscribers:write'))->whereNumber('id')->name('subscribers.update');
+        Route::delete('subscribers/{id}', [Api\SubscribersController::class, 'destroy'])->middleware($a('subscribers:write'))->whereNumber('id')->name('subscribers.destroy');
+        Route::post('subscribers/{id}/tags', [Api\SubscribersController::class, 'attachTags'])->middleware($a('subscribers:write'))->whereNumber('id')->name('subscribers.tags.attach');
+        Route::delete('subscribers/{id}/tags', [Api\SubscribersController::class, 'detachTags'])->middleware($a('subscribers:write'))->whereNumber('id')->name('subscribers.tags.detach');
 
         Route::get('tags', [Api\TagsController::class, 'index'])->middleware($a('tags:read'))->name('tags.index');
         Route::post('tags', [Api\TagsController::class, 'store'])->middleware($a('tags:write'))->name('tags.store');
-        Route::delete('tags/{id}', [Api\TagsController::class, 'destroy'])->middleware($a('tags:write'))->name('tags.destroy');
+        Route::delete('tags/{id}', [Api\TagsController::class, 'destroy'])->middleware($a('tags:write'))->whereNumber('id')->name('tags.destroy');
 
         Route::get('segments', [Api\SegmentsController::class, 'index'])->middleware($a('segments:read'))->name('segments.index');
         Route::post('segments', [Api\SegmentsController::class, 'store'])->middleware($a('segments:write'))->name('segments.store');
-        Route::get('segments/{id}', [Api\SegmentsController::class, 'show'])->middleware($a('segments:read'))->name('segments.show');
-        Route::put('segments/{id}', [Api\SegmentsController::class, 'update'])->middleware($a('segments:write'))->name('segments.update');
-        Route::delete('segments/{id}', [Api\SegmentsController::class, 'destroy'])->middleware($a('segments:write'))->name('segments.destroy');
+        Route::get('segments/{id}', [Api\SegmentsController::class, 'show'])->middleware($a('segments:read'))->whereNumber('id')->name('segments.show');
+        Route::put('segments/{id}', [Api\SegmentsController::class, 'update'])->middleware($a('segments:write'))->whereNumber('id')->name('segments.update');
+        Route::delete('segments/{id}', [Api\SegmentsController::class, 'destroy'])->middleware($a('segments:write'))->whereNumber('id')->name('segments.destroy');
 
         Route::get('templates', [Api\TemplatesController::class, 'index'])->middleware($a('templates:read'))->name('templates.index');
         Route::post('templates', [Api\TemplatesController::class, 'store'])->middleware($a('templates:write'))->name('templates.store');
-        Route::get('templates/{id}', [Api\TemplatesController::class, 'show'])->middleware($a('templates:read'))->name('templates.show');
-        Route::put('templates/{id}', [Api\TemplatesController::class, 'update'])->middleware($a('templates:write'))->name('templates.update');
-        Route::delete('templates/{id}', [Api\TemplatesController::class, 'destroy'])->middleware($a('templates:write'))->name('templates.destroy');
+        Route::get('templates/{id}', [Api\TemplatesController::class, 'show'])->middleware($a('templates:read'))->whereNumber('id')->name('templates.show');
+        Route::put('templates/{id}', [Api\TemplatesController::class, 'update'])->middleware($a('templates:write'))->whereNumber('id')->name('templates.update');
+        Route::delete('templates/{id}', [Api\TemplatesController::class, 'destroy'])->middleware($a('templates:write'))->whereNumber('id')->name('templates.destroy');
 
         Route::get('campaigns', [Api\CampaignsController::class, 'index'])->middleware($a('campaigns:read'))->name('campaigns.index');
         Route::post('campaigns', [Api\CampaignsController::class, 'store'])->middleware($a('campaigns:write'))->name('campaigns.store');
-        Route::get('campaigns/{id}', [Api\CampaignsController::class, 'show'])->middleware($a('campaigns:read'))->name('campaigns.show');
-        Route::patch('campaigns/{id}', [Api\CampaignsController::class, 'update'])->middleware($a('campaigns:write'))->name('campaigns.update');
-        Route::delete('campaigns/{id}', [Api\CampaignsController::class, 'destroy'])->middleware($a('campaigns:write'))->name('campaigns.destroy');
-        Route::put('campaigns/{id}/variants', [Api\CampaignsController::class, 'setVariants'])->middleware($a('campaigns:write'))->name('campaigns.variants');
-        Route::get('campaigns/{id}/variants/results', [Api\CampaignsController::class, 'results'])->middleware($a('campaigns:read'))->name('campaigns.variants.results');
-        Route::get('campaigns/{id}/audience', [Api\CampaignsController::class, 'audience'])->middleware($a('campaigns:read'))->name('campaigns.audience');
-        Route::post('campaigns/{id}/dispatch', [Api\CampaignsController::class, 'dispatch'])->middleware($a('campaigns:send'))->name('campaigns.dispatch');
+        Route::get('campaigns/{id}', [Api\CampaignsController::class, 'show'])->middleware($a('campaigns:read'))->whereNumber('id')->name('campaigns.show');
+        Route::patch('campaigns/{id}', [Api\CampaignsController::class, 'update'])->middleware($a('campaigns:write'))->whereNumber('id')->name('campaigns.update');
+        Route::delete('campaigns/{id}', [Api\CampaignsController::class, 'destroy'])->middleware($a('campaigns:write'))->whereNumber('id')->name('campaigns.destroy');
+        Route::put('campaigns/{id}/variants', [Api\CampaignsController::class, 'setVariants'])->middleware($a('campaigns:write'))->whereNumber('id')->name('campaigns.variants');
+        Route::get('campaigns/{id}/variants/results', [Api\CampaignsController::class, 'results'])->middleware($a('campaigns:read'))->whereNumber('id')->name('campaigns.variants.results');
+        Route::get('campaigns/{id}/audience', [Api\CampaignsController::class, 'audience'])->middleware($a('campaigns:read'))->whereNumber('id')->name('campaigns.audience');
+        Route::post('campaigns/{id}/dispatch', [Api\CampaignsController::class, 'dispatch'])->middleware($a('campaigns:send'))->whereNumber('id')->name('campaigns.dispatch');
     });
 }

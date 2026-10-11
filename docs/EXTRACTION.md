@@ -23,3 +23,6 @@ Token auth (`laravelmail_api_tokens`, hash only), ability-scoped REST over subsc
 
 ## Slice 7: A/B tests
 Weighted, stable variant split with subject/content overrides, per-variant results and leader. Not covered: automatic holdout + winner send, statistical significance.
+
+## Slice 8: bulk subscribers
+CSV import/export (API + `laravelmail:export`), bulk tag/untag/unsubscribe/delete with dry run. Id routes now reject non-numeric ids with 404. Not covered: async import jobs for very large files, import mapping UI.
