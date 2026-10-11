@@ -21,7 +21,8 @@ class SendCampaignMessage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public int $tries = 1;
+    public int $tries = 0; // retries only happen via release() when gateways are at capacity
+    public int $maxExceptions = 1;
 
     public function __construct(public int $messageId)
     {
@@ -50,20 +51,42 @@ class SendCampaignMessage implements ShouldQueue
 
         $campaign = $message->campaign;
         try {
-            app(\LaravelMail\Services\MailerFactory::class)->make($this->messageId)
-                ->to($subscriber->email)
-                ->send(new CampaignMail(
-                    $renderer->renderSubject($campaign, $subscriber),
-                    $this->body($renderer, $campaign, $subscriber, $message),
-                    $campaign->from_email,
-                    $campaign->from_name,
-                ));
+            $mail = new CampaignMail(
+                $renderer->renderSubject($campaign, $subscriber),
+                $this->body($renderer, $campaign, $subscriber, $message),
+                $campaign->from_email,
+                $campaign->from_name,
+            );
+            $this->deliver($message, $subscriber->email, $mail);
             $message->update(['status' => 'sent', 'sent_at' => now()]);
+        } catch (\LaravelMail\Exceptions\GatewayCapacityException $e) {
+            // At cap: leave the message pending and try again later. Nothing is dropped or sent early.
+            $this->job ? $this->release($e->retryAfterSeconds) : null;
+
+            return;
         } catch (Throwable $e) {
             $message->update(['status' => 'failed', 'error' => mb_substr($e->getMessage(), 0, 500)]);
         }
 
         $this->finish($campaign);
+    }
+
+    /** With features.deliverability on and gateways configured, route through caps/warming/failover; else the plain mailer. */
+    private function deliver(Message $message, string $to, CampaignMail $mail): void
+    {
+        $factory = app(\LaravelMail\Services\MailerFactory::class);
+        if (config('laravelmail.features.deliverability')) {
+            $primary = \LaravelMail\Models\Gateway::withoutGlobalScopes()->where('workspace_id', $message->workspace_id)
+                ->where('active', true)->orderBy('priority')->orderBy('id')->first();
+            if ($primary) {
+                app(\LaravelMail\Services\Deliverability\GatewayRouter::class)->send(
+                    $message, $primary, fn ($g) => $factory->fromSpec($g->mailerSpec())->to($to)->send($mail),
+                );
+
+                return;
+            }
+        }
+        $factory->make($this->messageId)->to($to)->send($mail);
     }
 
     private function body(Renderer $renderer, Campaign $campaign, $subscriber, Message $message): string

@@ -31,7 +31,7 @@ class BounceHandler
         Subscriber::withoutGlobalScopes()->where('email', $email)->get()->each->unsubscribe();
 
         if ($messageHash && ($m = Message::withoutGlobalScopes()->where('hash', $messageHash)->first())) {
-            $m->update(['status' => 'failed', 'error' => $type]);
+            $m->update(['status' => 'failed', 'error' => $type] + ($type === self::COMPLAINT ? ['complained_at' => now()] : []));
         }
     }
 

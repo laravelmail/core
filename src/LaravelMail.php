@@ -15,6 +15,9 @@ class LaravelMail
 {
     public static function schedule(Schedule $schedule): void
     {
+        if (config('laravelmail.features.deliverability')) {
+            $schedule->command('laravelmail:warming-advance')->dailyAt('00:05')->withoutOverlapping();
+        }
         if (config('laravelmail.features.automations')) {
             $schedule->command('laravelmail:automation-run')->everyMinute()->withoutOverlapping();
         }

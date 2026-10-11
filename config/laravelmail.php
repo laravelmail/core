@@ -9,6 +9,7 @@ return [
     // Feature flags. All default OFF. `sending` is the master delivery switch.
     'features' => [
         'sending' => env('LARAVELMAIL_SENDING_ENABLED', false),
+        'deliverability' => env('LARAVELMAIL_DELIVERABILITY_ENABLED', false), // DB gateways, caps, warming, failover
         'tracking' => env('LARAVELMAIL_TRACKING_ENABLED', false), // needs routes.enabled
         'webhooks' => env('LARAVELMAIL_WEBHOOKS_ENABLED', false), // needs routes.enabled
         'automations' => env('LARAVELMAIL_AUTOMATIONS_ENABLED', false),

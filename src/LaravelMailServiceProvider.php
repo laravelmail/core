@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use LaravelMail\Console\AutomationRunCommand;
 use LaravelMail\Console\DoctorCommand;
 use LaravelMail\Console\InstallCommand;
+use LaravelMail\Console\WarmingAdvanceCommand;
 use LaravelMail\Contracts\UserResolver;
 use LaravelMail\Contracts\WorkspaceResolver;
 
@@ -36,7 +37,7 @@ class LaravelMailServiceProvider extends ServiceProvider
         }
 
         if ($this->app->runningInConsole()) {
-            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class]);
+            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class, WarmingAdvanceCommand::class]);
             $this->publishes([__DIR__.'/../config/laravelmail.php' => config_path('laravelmail.php')], 'laravelmail-config');
             $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'laravelmail-migrations');
         }

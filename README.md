@@ -96,6 +96,10 @@ Skips suppressed addresses, never re-subscribes someone who unsubscribed, sends 
 - `POST {prefix}/subscribe/{uuid}` for tags with `enablePublicSignup()`. Throttled, optional origin allowlist, honeypot field `website`, same answer for new and existing addresses. Double opt-in stores a pending row and sends the confirmation only when `features.sending` is on.
 - Signed JSON preference center at `{prefix}/preferences/{subscriber}` (topics are tags with `preference_topic`; internal tags cannot be changed; suppressed addresses cannot resubscribe).
 
+## Deliverability (slice 5, opt-in)
+
+`LARAVELMAIL_DELIVERABILITY_ENABLED=true` (with `features.sending`) routes campaign sends through DB gateways (`Gateway`: a named host mailer or an inline transport, stored encrypted and hidden from serialization) with hourly/daily caps, warming plans, and priority failover. At cap, a message stays pending and the job is released for later; nothing is dropped or sent early. A paused warming plan keeps its cap. A complaint spike pauses the plan. Failovers are logged (`GatewayFailover`), `DeliverabilityOverview::snapshot()` gives a per-gateway status array, and `php artisan laravelmail:warming-advance` advances plans daily (scheduled by `LaravelMail::schedule()` only when the flag is on). With no gateways configured the plain mailer/pool is used.
+
 ## Not in this slice
 
 Automations, AI, SMS, IMAP inbox processing, tracking, A/B tests, segments, UI. They stay in the hosted app and will be extracted behind their own disabled-by-default flags. See `docs/EXTRACTION.md`.
