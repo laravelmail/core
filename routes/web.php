@@ -122,5 +122,15 @@ if (config('laravelmail.features.api')) {
             Route::get('subscribers/{id}/score-events', [Api\ScoringController::class, 'events'])->middleware($a('scoring:read'))->whereNumber('id')->name('scoring.events');
             Route::post('subscribers/{id}/score-events', [Api\ScoringController::class, 'custom'])->middleware($a('scoring:write'))->whereNumber('id')->name('scoring.custom');
         }
+
+        // RSS (needs features.rss too).
+        if (config('laravelmail.features.rss')) {
+            Route::get('rss-feeds', [Api\RssController::class, 'index'])->middleware($a('rss:read'))->name('rss.index');
+            Route::post('rss-feeds', [Api\RssController::class, 'store'])->middleware($a('rss:write'))->name('rss.store');
+            Route::delete('rss-feeds/{id}', [Api\RssController::class, 'destroy'])->middleware($a('rss:write'))->whereNumber('id')->name('rss.destroy');
+            Route::get('rss-feeds/{id}/items', [Api\RssController::class, 'items'])->middleware($a('rss:read'))->whereNumber('id')->name('rss.items');
+            Route::post('rss-feeds/{id}/fetch', [Api\RssController::class, 'fetch'])->middleware($a('rss:write'))->whereNumber('id')->name('rss.fetch');
+            Route::post('rss-feeds/{id}/draft-campaign', [Api\RssController::class, 'draft'])->middleware($a('rss:write'))->whereNumber('id')->name('rss.draft');
+        }
     });
 }

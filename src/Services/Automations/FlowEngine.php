@@ -259,8 +259,7 @@ class FlowEngine
     private function webhook(array $c, Subscriber $s): bool
     {
         $url = (string) ($c['url'] ?? '');
-        $host = parse_url($url, PHP_URL_HOST);
-        if (! str_starts_with($url, 'https://') || ! is_string($host) || $this->privateHost($host)) {
+        if (! \LaravelMail\Support\SafeUrl::isPublicHttps($url)) {
             return false; // https only, never internal addresses (SSRF)
         }
         try {
@@ -268,21 +267,6 @@ class FlowEngine
         } catch (Throwable) {
             return false;
         }
-    }
-
-    private function privateHost(string $host): bool
-    {
-        $ips = filter_var($host, FILTER_VALIDATE_IP) ? [$host] : (gethostbynamel($host) ?: []);
-        if ($ips === []) {
-            return true;
-        }
-        foreach ($ips as $ip) {
-            if (! filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private function finish(AutomationJourney $j, string $status, string $why): void

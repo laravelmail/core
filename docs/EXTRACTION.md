@@ -35,3 +35,6 @@ Driver contract, log/null drivers, consent-gated sender, message log, STOP handl
 
 ## Slice 11: lead scoring
 Rules, idempotent ledger, tracking and tag hooks, segment and flow conditions, decay command, API. Not covered: fit grading, scoring on store/page events (modules not extracted), the `subscribed` event hook on public signup, scoring UI.
+
+## Slice 12: RSS
+Feed model, safe fetcher (RSS/Atom), GUID dedupe, draft-campaign builder, command, API; shared `SafeUrl` SSRF guard (also used by the automation webhook step). Not covered: auto-created/auto-sent feed campaigns, per-feed schedules, conditional GET (ETag), DNS-rebinding pinning.
