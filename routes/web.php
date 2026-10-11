@@ -91,6 +91,8 @@ if (config('laravelmail.features.api')) {
         Route::get('campaigns/{id}', [Api\CampaignsController::class, 'show'])->middleware($a('campaigns:read'))->name('campaigns.show');
         Route::patch('campaigns/{id}', [Api\CampaignsController::class, 'update'])->middleware($a('campaigns:write'))->name('campaigns.update');
         Route::delete('campaigns/{id}', [Api\CampaignsController::class, 'destroy'])->middleware($a('campaigns:write'))->name('campaigns.destroy');
+        Route::put('campaigns/{id}/variants', [Api\CampaignsController::class, 'setVariants'])->middleware($a('campaigns:write'))->name('campaigns.variants');
+        Route::get('campaigns/{id}/variants/results', [Api\CampaignsController::class, 'results'])->middleware($a('campaigns:read'))->name('campaigns.variants.results');
         Route::get('campaigns/{id}/audience', [Api\CampaignsController::class, 'audience'])->middleware($a('campaigns:read'))->name('campaigns.audience');
         Route::post('campaigns/{id}/dispatch', [Api\CampaignsController::class, 'dispatch'])->middleware($a('campaigns:send'))->name('campaigns.dispatch');
     });

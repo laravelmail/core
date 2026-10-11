@@ -50,10 +50,11 @@ class SendCampaignMessage implements ShouldQueue
         }
 
         $campaign = $message->campaign;
+        $variant = $message->variant_id ? \LaravelMail\Models\CampaignVariant::withoutGlobalScopes()->find($message->variant_id) : null;
         try {
             $mail = new CampaignMail(
-                $renderer->renderSubject($campaign, $subscriber),
-                $this->body($renderer, $campaign, $subscriber, $message),
+                $renderer->renderSubject($campaign, $subscriber, $variant),
+                $this->body($renderer, $campaign, $subscriber, $message, $variant),
                 $campaign->from_email,
                 $campaign->from_name,
             );
@@ -89,9 +90,9 @@ class SendCampaignMessage implements ShouldQueue
         $factory->make($this->messageId)->to($to)->send($mail);
     }
 
-    private function body(Renderer $renderer, Campaign $campaign, $subscriber, Message $message): string
+    private function body(Renderer $renderer, Campaign $campaign, $subscriber, Message $message, $variant = null): string
     {
-        $html = $renderer->render($campaign, $subscriber);
+        $html = $renderer->render($campaign, $subscriber, $variant);
         $html = app(\LaravelMail\Services\Content\TagMerger::class)->merge($html, $message->setRelation('subscriber', $subscriber), false);
 
         // Tracking only when explicitly enabled AND the routes exist.

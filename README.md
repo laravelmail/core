@@ -135,3 +135,7 @@ Endpoints live under `/laravelmail/api/v1` (throttled by `routes.api_throttle`):
 
 Safety: API-created campaigns are always drafts; only `dispatch` can send and it needs its own ability plus the sending flag;
 an API write never re-subscribes an unsubscribed address and refuses suppressed ones. A token's `workspace_id` scopes every query.
+
+## A/B tests
+
+Give a draft campaign two or more variants (`AbTestService::define()` or `PUT /api/v1/campaigns/{id}/variants`). Each variant overrides the subject and/or content and has a weight (1-100). At dispatch every recipient is placed in a variant by a stable hash, so re-dispatch never moves anyone. `GET /api/v1/campaigns/{id}/variants/results` (or `AbTestService::results()` / `leader()`) shows sent, opens, clicks and rates per variant. Opens and clicks need `features.tracking`. The package does not auto-send a winner; that stays an explicit decision.

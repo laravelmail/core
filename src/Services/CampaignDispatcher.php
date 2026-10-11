@@ -50,10 +50,13 @@ class CampaignDispatcher
         }
 
         $messageIds = [];
+        $ab = app(AbTestService::class);
+        $variants = $campaign->variants()->orderBy('id')->get();
         foreach ($recipients as $subscriber) {
             $m = Message::firstOrCreate(
                 ['campaign_id' => $campaign->id, 'subscriber_id' => $subscriber->id],
-                ['recipient_email' => $subscriber->email, 'subject' => $campaign->subject, 'status' => 'pending'],
+                ['recipient_email' => $subscriber->email, 'subject' => $campaign->subject, 'status' => 'pending',
+                    'variant_id' => $ab->assign($campaign, $subscriber->id, $variants)?->id],
             );
             if ($m->status === 'pending') {
                 $messageIds[] = $m->id;

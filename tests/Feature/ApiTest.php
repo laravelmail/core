@@ -110,4 +110,13 @@ class ApiTest extends TestCase
         $this->artisan('laravelmail:token', ['name' => 'k', '--ability' => ['tags:read']])->assertSuccessful();
         $this->assertSame(1, ApiToken::count());
     }
+
+    public function test_variants_via_api(): void
+    {
+        $h = $this->h();
+        $c = $this->postJson('/laravelmail/api/v1/campaigns', ['name' => 'C', 'subject' => 'S', 'content' => 'x'], $h)->json('id');
+        $this->putJson("/laravelmail/api/v1/campaigns/$c/variants", ['variants' => [['label' => 'A', 'subject' => 'a']]], $h)->assertStatus(422);
+        $this->putJson("/laravelmail/api/v1/campaigns/$c/variants", ['variants' => [['label' => 'A', 'subject' => 'a'], ['label' => 'B', 'subject' => 'b', 'weight' => 30]]], $h)->assertOk()->assertJsonCount(2);
+        $this->getJson("/laravelmail/api/v1/campaigns/$c/variants/results", $h)->assertOk()->assertJsonPath('leader', null);
+    }
 }

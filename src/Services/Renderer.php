@@ -10,9 +10,9 @@ use LaravelMail\Models\Subscriber;
 /** Renders campaign HTML: template wrapper ({{content}}) plus merge tags. No code execution. */
 class Renderer
 {
-    public function render(Campaign $campaign, Subscriber $subscriber): string
+    public function render(Campaign $campaign, Subscriber $subscriber, ?\LaravelMail\Models\CampaignVariant $variant = null): string
     {
-        $body = (string) $campaign->content;
+        $body = (string) ($variant?->content ?: $campaign->content);
         if ($campaign->template) {
             $body = str_contains($campaign->template->content, '{{content}}')
                 ? str_replace('{{content}}', $body, $campaign->template->content)
@@ -22,9 +22,9 @@ class Renderer
         return $this->merge($body, $subscriber);
     }
 
-    public function renderSubject(Campaign $campaign, Subscriber $subscriber): string
+    public function renderSubject(Campaign $campaign, Subscriber $subscriber, ?\LaravelMail\Models\CampaignVariant $variant = null): string
     {
-        return $this->merge((string) $campaign->subject, $subscriber, false);
+        return $this->merge((string) ($variant?->subject ?: $campaign->subject), $subscriber, false);
     }
 
     public function merge(string $text, Subscriber $subscriber, bool $escape = true): string

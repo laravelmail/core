@@ -50,6 +50,32 @@ class CampaignsController
         return response()->noContent();
     }
 
+    /** Replace the A/B variants of a draft campaign. Send [] to clear. */
+    public function setVariants(Request $r, int $id, \LaravelMail\Services\AbTestService $ab)
+    {
+        $c = Campaign::findOrFail($id);
+        $d = $r->validate(['variants' => 'present|array|max:10', 'variants.*.label' => 'required|string|max:50', 'variants.*.subject' => 'nullable|string|max:255',
+            'variants.*.content' => 'nullable|string|max:2000000', 'variants.*.weight' => 'integer|min:1|max:100']);
+        try {
+            $ab->define($c, $d['variants']);
+        } catch (InvalidCampaignStateException $e) {
+            abort(409, $e->getMessage());
+        } catch (\InvalidArgumentException $e) {
+            abort(422, $e->getMessage());
+        }
+
+        return $c->variants()->get(['id', 'label', 'subject', 'weight']);
+    }
+
+    public function results(Request $r, int $id, \LaravelMail\Services\AbTestService $ab)
+    {
+        $c = Campaign::findOrFail($id);
+        $metric = $r->input('metric', 'open_rate');
+        abort_unless(in_array($metric, ['open_rate', 'click_rate'], true), 422, 'metric must be open_rate or click_rate');
+
+        return ['variants' => $ab->results($c), 'leader' => $ab->leader($c, $metric), 'metric' => $metric];
+    }
+
     /** Who would receive it. Works while sending is disabled; sends nothing. */
     public function audience(int $id, CampaignDispatcher $d)
     {

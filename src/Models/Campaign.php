@@ -47,6 +47,11 @@ class Campaign extends Model
             ->wherePivot('excluded', true)->withPivot('excluded');
     }
 
+    public function variants(): HasMany
+    {
+        return $this->hasMany(CampaignVariant::class);
+    }
+
     public function template(): BelongsTo
     {
         return $this->belongsTo(Template::class);

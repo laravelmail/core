@@ -20,3 +20,6 @@ OPEN CONFLICT: the map wants migrations with identical filenames/schema to the a
 
 ## Slice 6: HTTP API
 Token auth (`laravelmail_api_tokens`, hash only), ability-scoped REST over subscribers, tags, segments, templates, campaigns; `laravelmail:token` command; `features.api` flag. Not covered: API tokens UI, per-token rate limits, webhooks-out.
+
+## Slice 7: A/B tests
+Weighted, stable variant split with subject/content overrides, per-variant results and leader. Not covered: automatic holdout + winner send, statistical significance.
