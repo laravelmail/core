@@ -2,7 +2,7 @@ name: tests
 on: [push, pull_request]
 jobs:
   phpunit:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     strategy:
       matrix: { php: ['8.4'] }
     steps:
@@ -13,7 +13,7 @@ jobs:
       - run: composer validate --strict
       - run: vendor/bin/phpunit
   phpstan:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -21,7 +21,7 @@ jobs:
       - run: composer install --no-interaction --prefer-dist
       - run: vendor/bin/phpstan analyse --memory-limit=1G --no-progress
   host-fixture:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
