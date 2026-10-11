@@ -19,6 +19,9 @@ All notable changes. Unreleased until Stefan tags; no version tags have been cre
 - Commands: install, doctor, token, export, warming-advance, blacklist-check, score-decay, rss-fetch, automation run.
 - CI: PHPUnit, fresh-host integration fixture, PHPStan (level 5 with baseline).
 
+### Licence
+- MIT (decided by Stefan). Schema strategy decided: clean package schema plus a mapping layer for app adoption.
+
 ### Safety defaults
 - Every feature flag is off by default; installing registers no routes, schedules nothing, sends nothing and never rewrites host mail/auth config.
 
@@ -29,6 +32,5 @@ All notable changes. Unreleased until Stefan tags; no version tags have been cre
 - Migration rollbacks on SQLite (unique index dropped before its column).
 
 ### Known gaps
-- License is a `proprietary` placeholder pending the BSD-3-Clause vs MIT decision.
 - Not yet run against MySQL/PostgreSQL; PHP 8.3 not run (see README requirements).
 - Not extracted: store/CMS integrations, conversations, CRM deals, AI, mailbox/IMAP.

@@ -2,7 +2,7 @@
     "name": "laravelmail/core",
     "description": "Embeddable email-marketing engine for Laravel: subscribers, tags, templates, campaigns and suppression, with sending off by default.",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "keywords": [
         "laravel",
         "email",

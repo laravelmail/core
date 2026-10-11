@@ -167,3 +167,7 @@ Off by default (`features.rss`). Add feeds, fetch them (`php artisan laravelmail
 `composer test` runs PHPUnit. `composer analyse` runs PHPStan/Larastan at level 5 against PHP 8.3 semantics (with a baseline for model-property noise). `tests/host-fixture/run.sh` installs the package into a fresh Laravel app and checks discovery, publish, migrate, zero side effects, route/config cache and rollback. Full endpoint list: [docs/API.md](docs/API.md). Changes: [CHANGELOG.md](CHANGELOG.md).
 
 PHP: `composer.json` requires `^8.4`. Laravel 13 itself allows 8.3 and no 8.4-only syntax or functions were found, but 8.3 has not been executed, so the constraint is unchanged until it is tested in CI.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
