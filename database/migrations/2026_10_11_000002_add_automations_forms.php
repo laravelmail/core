@@ -72,6 +72,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists($this->p('pending_subscriptions'));
+        Schema::table($this->p('tags'), fn (Blueprint $t) => $t->dropUnique($this->p('tags').'_public_uuid_unique'));
         Schema::table($this->p('tags'), fn (Blueprint $t) => $t->dropColumn(['public_uuid', 'public_subscribe_enabled', 'double_opt_in', 'preference_topic', 'allowed_origins']));
         Schema::dropIfExists($this->p('automation_journeys'));
         Schema::dropIfExists($this->p('automation_steps'));

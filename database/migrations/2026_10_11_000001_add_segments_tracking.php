@@ -50,6 +50,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists($this->p('message_urls'));
+        Schema::table($this->p('messages'), fn (Blueprint $t) => $t->dropUnique($this->p('messages').'_hash_unique'));
         Schema::table($this->p('messages'), function (Blueprint $t) {
             $t->dropColumn(['hash', 'opened_at', 'clicked_at', 'open_count', 'click_count']);
         });

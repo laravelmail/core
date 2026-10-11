@@ -102,6 +102,8 @@ Automations, AI, SMS, IMAP inbox processing, tracking, A/B tests, segments, UI. 
 
 ## Tests
 
+`tests/host-fixture/run.sh` installs a fresh Laravel app, requires this package via composer (path repo), and checks discovery, publish, migrate, no routes/schedule/mail on install, in-host behaviour, route/config caching with every opt-in route enabled, and rollback.
+
 ```bash
 composer install && vendor/bin/phpunit
 ```
