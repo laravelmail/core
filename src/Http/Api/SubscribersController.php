@@ -86,7 +86,7 @@ class SubscribersController
     private function out(Subscriber $s): array
     {
         return ['id' => $s->id, 'email' => $s->email, 'first_name' => $s->first_name, 'last_name' => $s->last_name,
-            'status' => $s->status, 'phone' => $s->phone, 'sms_consent' => $s->sms_consent_at !== null && $s->sms_opted_out_at === null, 'meta' => $s->meta, 'tags' => $s->tags->pluck('name')->all(),
+            'status' => $s->status, 'phone' => $s->phone, 'score' => $s->score, 'sms_consent' => $s->sms_consent_at !== null && $s->sms_opted_out_at === null, 'meta' => $s->meta, 'tags' => $s->tags->pluck('name')->all(),
             'created_at' => $s->created_at, 'unsubscribed_at' => $s->unsubscribed_at];
     }
 }

@@ -109,6 +109,7 @@ class SegmentRuleCompiler
             'created_at' => $this->createdAt($query, $t, $op, $value),
             'tag' => $this->tag($query, $t, $op, (int) $value),
             'segment' => $this->segment($query, $t, $op, (int) $value, $visited),
+            'lead_score' => $query->where("{$t}.score", $op === 'at_least' ? '>=' : '<=', (int) $value),
             'campaign_sent' => $this->message($query, $t, $op === 'is', (int) $value, 'sent_at'),
             'campaign_opened' => $this->message($query, $t, $op === 'is', (int) $value, 'opened_at'),
             'campaign_clicked' => $this->message($query, $t, $op === 'is', (int) $value, 'clicked_at'),

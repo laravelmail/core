@@ -32,3 +32,6 @@ Pools, tracked IPs, persisted DNSBL check history, listing-change event, command
 
 ## Slice 10: SMS
 Driver contract, log/null drivers, consent-gated sender, message log, STOP handling, flow send_sms step. Not covered: any real provider driver (e.g. GoIP), SMS campaigns to segments, inbound webhook route, delivery receipts, quiet hours.
+
+## Slice 11: lead scoring
+Rules, idempotent ledger, tracking and tag hooks, segment and flow conditions, decay command, API. Not covered: fit grading, scoring on store/page events (modules not extracted), the `subscribed` event hook on public signup, scoring UI.

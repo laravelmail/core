@@ -112,5 +112,15 @@ if (config('laravelmail.features.api')) {
             Route::post('ips/{id}/check', [Api\IpPoolsController::class, 'check'])->middleware($a('deliverability:write'))->whereNumber('id')->name('ips.check');
             Route::get('ips/{id}/history', [Api\IpPoolsController::class, 'history'])->middleware($a('deliverability:read'))->whereNumber('id')->name('ips.history');
         }
+
+        // Lead scoring (needs features.scoring too).
+        if (config('laravelmail.features.scoring')) {
+            Route::get('scoring-rules', [Api\ScoringController::class, 'index'])->middleware($a('scoring:read'))->name('scoring.index');
+            Route::post('scoring-rules', [Api\ScoringController::class, 'store'])->middleware($a('scoring:write'))->name('scoring.store');
+            Route::put('scoring-rules/{id}', [Api\ScoringController::class, 'update'])->middleware($a('scoring:write'))->whereNumber('id')->name('scoring.update');
+            Route::delete('scoring-rules/{id}', [Api\ScoringController::class, 'destroy'])->middleware($a('scoring:write'))->whereNumber('id')->name('scoring.destroy');
+            Route::get('subscribers/{id}/score-events', [Api\ScoringController::class, 'events'])->middleware($a('scoring:read'))->whereNumber('id')->name('scoring.events');
+            Route::post('subscribers/{id}/score-events', [Api\ScoringController::class, 'custom'])->middleware($a('scoring:write'))->whereNumber('id')->name('scoring.custom');
+        }
     });
 }

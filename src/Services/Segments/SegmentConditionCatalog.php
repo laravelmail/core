@@ -28,6 +28,7 @@ final class SegmentConditionCatalog
             'created_at' => ['before' => 'before date', 'after' => 'after date', 'within_days' => 'within the last N days', 'older_than_days' => 'more than N days ago'],
             'tag' => ['has' => 'has tag', 'has_not' => 'does not have tag'],
             'segment' => ['in' => 'is in segment', 'not_in' => 'is not in segment'],
+            'lead_score' => ['at_least' => 'score is at least', 'at_most' => 'score is at most'],
             'campaign_sent' => ['is' => 'was sent', 'is_not' => 'was not sent'],
             'campaign_opened' => ['is' => 'opened', 'is_not' => 'did not open'],
             'campaign_clicked' => ['is' => 'clicked', 'is_not' => 'did not click'],

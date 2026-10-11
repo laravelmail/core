@@ -19,7 +19,10 @@ class TagService
                 $ids[] = Tag::firstOrCreate(['name' => $name])->id;
             }
         }
-        $subscriber->tags()->syncWithoutDetaching($ids);
+        $changes = $subscriber->tags()->syncWithoutDetaching($ids);
+        foreach ($changes['attached'] ?? [] as $tagId) {
+            app(\LaravelMail\Services\Scoring\ScoringService::class)->record($subscriber, 'tag_added', 'tag:'.$tagId, (int) $tagId);
+        }
     }
 
     public function detach(Subscriber $subscriber, iterable $names): void

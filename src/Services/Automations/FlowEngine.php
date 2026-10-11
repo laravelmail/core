@@ -210,6 +210,7 @@ class FlowEngine
 
         return match ($c['check'] ?? null) {
             'has_tag' => $s->tags()->whereKey((int) $v)->exists(),
+            'lead_score' => (int) $s->fresh()->score >= (int) $v,
             'in_segment' => ($seg = Segment::find((int) $v))
                 && $this->segments->query((array) $seg->rules)->whereKey($s->id)->exists(),
             'field' => $this->field($s, (string) ($c['field'] ?? ''), (string) ($c['operator'] ?? 'equals'), $v),
