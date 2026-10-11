@@ -52,6 +52,16 @@ return [
         'ses' => env('LARAVELMAIL_WEBHOOK_SES_TOPIC_ARNS'), // comma separated
     ],
 
+    'sms' => [
+        // Delivery driver: 'log' (default, delivers nothing), 'null', or a key under 'drivers'.
+        'driver' => env('LARAVELMAIL_SMS_DRIVER', 'log'),
+        // name => class implementing LaravelMail\Contracts\SmsDriver. Nothing is registered by default.
+        'drivers' => [],
+        'max_length' => 1000,
+        'append_opt_out' => true,
+        'opt_out_text' => 'Reply STOP to opt out.',
+    ],
+
     'deliverability' => [
         // DNSBL zones for blacklist monitoring. Empty = built-in defaults (spamhaus, spamcop, barracuda).
         'dnsbl_zones' => [],

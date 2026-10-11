@@ -26,6 +26,12 @@ class Subscriber extends Model
         return $this->belongsToMany(Tag::class, config('laravelmail.table_prefix').'subscriber_tag');
     }
 
+    /** Record explicit SMS opt-in. Call this only when the person actually agreed to receive texts. */
+    public function grantSmsConsent(?string $phone = null): void
+    {
+        $this->forceFill(['phone' => \LaravelMail\Support\PhoneNumber::normalize($phone ?? $this->phone), 'sms_consent_at' => now(), 'sms_opted_out_at' => null])->save();
+    }
+
     public function isSubscribed(): bool
     {
         return $this->status === 'subscribed';

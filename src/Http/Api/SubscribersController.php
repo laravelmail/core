@@ -31,7 +31,7 @@ class SubscribersController
     {
         $d = $r->validate([
             'email' => 'required|email:rfc|max:255', 'first_name' => 'nullable|string|max:255', 'last_name' => 'nullable|string|max:255',
-            'meta' => 'nullable|array', 'tags' => 'array|max:50', 'tags.*' => 'string|max:100',
+            'meta' => 'nullable|array', 'phone' => ['nullable', 'string', 'max:20', fn ($a, $v, $fail) => $v === null || \LaravelMail\Support\PhoneNumber::isValid($v) ?: $fail('The phone must be in international format, e.g. +447700900123.')], 'tags' => 'array|max:50', 'tags.*' => 'string|max:100',
         ]);
         $email = strtolower($d['email']);
         if (\LaravelMail\Models\Suppression::isSuppressed($email)) {
@@ -40,7 +40,7 @@ class SubscribersController
         $s = Subscriber::firstOrNew(['email' => $email]);
         $new = ! $s->exists;
         // An API write never re-subscribes someone who unsubscribed.
-        $s->fill(array_filter(['first_name' => $d['first_name'] ?? null, 'last_name' => $d['last_name'] ?? null, 'meta' => $d['meta'] ?? null], fn ($v) => $v !== null))->save();
+        $s->fill(array_filter(['first_name' => $d['first_name'] ?? null, 'last_name' => $d['last_name'] ?? null, 'meta' => $d['meta'] ?? null, 'phone' => \LaravelMail\Support\PhoneNumber::normalize($d['phone'] ?? null)], fn ($v) => $v !== null))->save();
         $tags->attach($s, $d['tags'] ?? []);
 
         return response()->json($this->out($s->load('tags:id,name')), $new ? 201 : 200);
@@ -54,7 +54,7 @@ class SubscribersController
     public function update(Request $r, int $id)
     {
         $s = Subscriber::findOrFail($id);
-        $d = $r->validate(['first_name' => 'nullable|string|max:255', 'last_name' => 'nullable|string|max:255', 'meta' => 'nullable|array']);
+        $d = $r->validate(['first_name' => 'nullable|string|max:255', 'last_name' => 'nullable|string|max:255', 'meta' => 'nullable|array', 'phone' => ['nullable', 'string', 'max:20', fn ($a, $v, $fail) => $v === null || \LaravelMail\Support\PhoneNumber::isValid($v) ?: $fail('The phone must be in international format, e.g. +447700900123.')]]);
         $s->fill($d)->save();
 
         return $this->out($s->load('tags:id,name'));
@@ -86,7 +86,7 @@ class SubscribersController
     private function out(Subscriber $s): array
     {
         return ['id' => $s->id, 'email' => $s->email, 'first_name' => $s->first_name, 'last_name' => $s->last_name,
-            'status' => $s->status, 'meta' => $s->meta, 'tags' => $s->tags->pluck('name')->all(),
+            'status' => $s->status, 'phone' => $s->phone, 'sms_consent' => $s->sms_consent_at !== null && $s->sms_opted_out_at === null, 'meta' => $s->meta, 'tags' => $s->tags->pluck('name')->all(),
             'created_at' => $s->created_at, 'unsubscribed_at' => $s->unsubscribed_at];
     }
 }

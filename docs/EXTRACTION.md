@@ -29,3 +29,6 @@ CSV import/export (API + `laravelmail:export`), bulk tag/untag/unsubscribe/delet
 
 ## Slice 9: IP pools + blacklist monitoring
 Pools, tracked IPs, persisted DNSBL check history, listing-change event, command + API. Not covered: automatic routing by pool, IPv6, auto-pause on listing, a scheduler entry.
+
+## Slice 10: SMS
+Driver contract, log/null drivers, consent-gated sender, message log, STOP handling, flow send_sms step. Not covered: any real provider driver (e.g. GoIP), SMS campaigns to segments, inbound webhook route, delivery receipts, quiet hours.

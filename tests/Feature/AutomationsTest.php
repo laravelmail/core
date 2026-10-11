@@ -89,7 +89,7 @@ class AutomationsTest extends TestCase
     {
         config(['laravelmail.features.automations' => true]);
         $s = Subscriber::create(['email' => 'a@example.com']);
-        $a = $this->flow([['node_key' => 'x', 'type' => 'send_sms']]);
+        $a = $this->flow([['node_key' => 'x', 'type' => 'carrier_pigeon']]);
         $j = app(FlowEngine::class)->enrol($a, $s);
         app(FlowEngine::class)->tick();
         $this->assertSame('failed', $j->fresh()->status);

@@ -184,6 +184,19 @@ class FlowEngine
 
                 return $this->send($c, $s, $journey) ? 'next' : 'failed';
 
+            case FlowGraphValidator::TYPE_SEND_SMS:
+                if (! config('laravelmail.features.sms')) {
+                    $journey->forceFill(['wake_at' => now()->addHour(), 'log' => $this->log($journey, 'parked: sms is disabled')])->save();
+
+                    return 'park';
+                }
+                $sms = app(\LaravelMail\Services\Sms\SmsSender::class)->send($s, (string) ($c['body'] ?? ''));
+                if ($sms->status !== 'sent') {
+                    $journey->forceFill(['log' => $this->log($journey, "sms {$sms->status}: {$sms->error}")])->save();
+                }
+
+                return $sms->status === 'sent' ? 'next' : 'failed';
+
             case FlowGraphValidator::TYPE_EXIT:
                 return 'stop';
         }
