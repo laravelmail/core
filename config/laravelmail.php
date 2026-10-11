@@ -52,6 +52,11 @@ return [
         'ses' => env('LARAVELMAIL_WEBHOOK_SES_TOPIC_ARNS'), // comma separated
     ],
 
+    'deliverability' => [
+        // DNSBL zones for blacklist monitoring. Empty = built-in defaults (spamhaus, spamcop, barracuda).
+        'dnsbl_zones' => [],
+    ],
+
     'routes' => [
         // Public HTTP endpoints (unsubscribe). Off by default.
         'enabled' => env('LARAVELMAIL_ROUTES_ENABLED', false),

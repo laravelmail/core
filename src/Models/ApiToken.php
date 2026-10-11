@@ -10,7 +10,7 @@ class ApiToken extends Model
 {
     public const ABILITIES = [
         'subscribers:read', 'subscribers:write', 'tags:read', 'tags:write', 'segments:read', 'segments:write',
-        'templates:read', 'templates:write', 'campaigns:read', 'campaigns:write', 'campaigns:send',
+        'templates:read', 'templates:write', 'campaigns:read', 'campaigns:write', 'campaigns:send', 'deliverability:read', 'deliverability:write',
     ];
 
     protected $guarded = [];

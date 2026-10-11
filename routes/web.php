@@ -99,5 +99,18 @@ if (config('laravelmail.features.api')) {
         Route::get('campaigns/{id}/variants/results', [Api\CampaignsController::class, 'results'])->middleware($a('campaigns:read'))->whereNumber('id')->name('campaigns.variants.results');
         Route::get('campaigns/{id}/audience', [Api\CampaignsController::class, 'audience'])->middleware($a('campaigns:read'))->whereNumber('id')->name('campaigns.audience');
         Route::post('campaigns/{id}/dispatch', [Api\CampaignsController::class, 'dispatch'])->middleware($a('campaigns:send'))->whereNumber('id')->name('campaigns.dispatch');
+
+        // Deliverability: IP pools and blacklist monitoring. Needs features.deliverability as well.
+        if (config('laravelmail.features.deliverability')) {
+            Route::get('ip-pools', [Api\IpPoolsController::class, 'pools'])->middleware($a('deliverability:read'))->name('ip-pools.index');
+            Route::post('ip-pools', [Api\IpPoolsController::class, 'storePool'])->middleware($a('deliverability:write'))->name('ip-pools.store');
+            Route::delete('ip-pools/{id}', [Api\IpPoolsController::class, 'destroyPool'])->middleware($a('deliverability:write'))->whereNumber('id')->name('ip-pools.destroy');
+            Route::get('ips', [Api\IpPoolsController::class, 'ips'])->middleware($a('deliverability:read'))->name('ips.index');
+            Route::post('ips', [Api\IpPoolsController::class, 'storeIp'])->middleware($a('deliverability:write'))->name('ips.store');
+            Route::patch('ips/{id}', [Api\IpPoolsController::class, 'updateIp'])->middleware($a('deliverability:write'))->whereNumber('id')->name('ips.update');
+            Route::delete('ips/{id}', [Api\IpPoolsController::class, 'destroyIp'])->middleware($a('deliverability:write'))->whereNumber('id')->name('ips.destroy');
+            Route::post('ips/{id}/check', [Api\IpPoolsController::class, 'check'])->middleware($a('deliverability:write'))->whereNumber('id')->name('ips.check');
+            Route::get('ips/{id}/history', [Api\IpPoolsController::class, 'history'])->middleware($a('deliverability:read'))->whereNumber('id')->name('ips.history');
+        }
     });
 }

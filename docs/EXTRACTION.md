@@ -26,3 +26,6 @@ Weighted, stable variant split with subject/content overrides, per-variant resul
 
 ## Slice 8: bulk subscribers
 CSV import/export (API + `laravelmail:export`), bulk tag/untag/unsubscribe/delete with dry run. Id routes now reject non-numeric ids with 404. Not covered: async import jobs for very large files, import mapping UI.
+
+## Slice 9: IP pools + blacklist monitoring
+Pools, tracked IPs, persisted DNSBL check history, listing-change event, command + API. Not covered: automatic routing by pool, IPv6, auto-pause on listing, a scheduler entry.

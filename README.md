@@ -144,3 +144,8 @@ Give a draft campaign two or more variants (`AbTestService::define()` or `PUT /a
 ## Bulk subscriber management
 
 API (`subscribers:write` / `subscribers:read`): `POST /subscribers/import` (CSV as `file` up to 10 MB or `csv`, optional `tags`), `GET /subscribers/export?tag=&status=` (streamed CSV; formula-looking cells are prefixed with `'`), `POST /subscribers/bulk` with `action` of `tag|untag|unsubscribe|delete`, a selection (`ids`, `tag`, `status`, `email_contains`; an empty selection is refused) and `dry_run` to preview the count. CLI: `php artisan laravelmail:export path.csv --tag= --status=`.
+
+
+## IP pools and blacklist monitoring
+
+Needs `features.deliverability`. Track sending IPs (optionally grouped in pools) and check them against DNSBLs (`deliverability.dnsbl_zones`, default Spamhaus ZEN, SpamCop, Barracuda). `php artisan laravelmail:blacklist-check [--ip=]` records each result as history, flips an IP between `active` and `listed`, and fires `SendingIpListingChanged` on a change so you can alert. It is monitoring only: it never changes how mail is sent, never pauses an IP for you (a `paused` IP stays paused) and is not scheduled for you; add it to your own scheduler if you want it. API (`deliverability:read|write`): `ip-pools`, `ips`, `ips/{id}/check`, `ips/{id}/history`. IPv4 only.
