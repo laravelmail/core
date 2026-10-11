@@ -17,3 +17,6 @@ Slice 2: segments, tracking, SMTP rotation, PhoneNumber. Slice 3: MJML (optional
 Adopted: name `laravelmail/core`, PHP ^8.4 / Laravel ^13, `features.*` flags all off, UserResolver + WorkspaceResolver, host-owned scheduling helper `LaravelMail::schedule()`, package-owned mailer (inline transport via Mail::build, no host mail/gmail config rewrite), validation client config default-disabled with no hardcoded endpoint, AI and mailbox excluded.
 
 OPEN CONFLICT: the map wants migrations with identical filenames/schema to the app (so the app can drop its copies and `migrate` is a no-op) and a port of the SendPortal-derived Portal/router macros. Slice 1 is a clean schema (prefixed tables, string statuses). The app's `2025_01_01_000000_create_initial_schema` also bundles users/workspaces/invitations that the host must own, and `App\Models\Subscriber` references Conversation/Automation/Sms classes. A verbatim port needs a decision: (a) schema-compatible port (verbatim migrations, split out host-owned tables) or (b) keep the clean schema plus a mapping layer for the app.
+
+## Slice 6: HTTP API
+Token auth (`laravelmail_api_tokens`, hash only), ability-scoped REST over subscribers, tags, segments, templates, campaigns; `laravelmail:token` command; `features.api` flag. Not covered: API tokens UI, per-token rate limits, webhooks-out.

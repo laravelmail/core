@@ -111,3 +111,27 @@ Automations, AI, SMS, IMAP inbox processing, tracking, A/B tests, segments, UI. 
 ```bash
 composer install && vendor/bin/phpunit
 ```
+
+
+## HTTP API (opt-in)
+
+Off by default. Needs `LARAVELMAIL_ROUTES_ENABLED=true` and `LARAVELMAIL_API_ENABLED=true`.
+
+```bash
+php artisan laravelmail:token "crm-sync" --ability=subscribers:read --ability=subscribers:write
+```
+
+The plain token is printed once; only its SHA-256 hash is stored. Send it as `Authorization: Bearer <token>`.
+Endpoints live under `/laravelmail/api/v1` (throttled by `routes.api_throttle`):
+
+| Resource | Abilities |
+|---|---|
+| `subscribers` (list, create/upsert, show, patch, delete, `POST|DELETE /{id}/tags`) | `subscribers:read`, `subscribers:write` |
+| `tags` (list, create, delete) | `tags:read`, `tags:write` |
+| `segments` (CRUD; rule trees are validated on write) | `segments:read`, `segments:write` |
+| `templates` (CRUD) | `templates:read`, `templates:write` |
+| `campaigns` (CRUD, `GET /{id}/audience`) | `campaigns:read`, `campaigns:write` |
+| `POST campaigns/{id}/dispatch` | `campaigns:send` (and `features.sending`) |
+
+Safety: API-created campaigns are always drafts; only `dispatch` can send and it needs its own ability plus the sending flag;
+an API write never re-subscribes an unsubscribed address and refuses suppressed ones. A token's `workspace_id` scopes every query.

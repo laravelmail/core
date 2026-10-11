@@ -9,6 +9,7 @@ return [
     // Feature flags. All default OFF. `sending` is the master delivery switch.
     'features' => [
         'sending' => env('LARAVELMAIL_SENDING_ENABLED', false),
+        'api' => env('LARAVELMAIL_API_ENABLED', false), // token-authenticated JSON API; needs routes.enabled
         'deliverability' => env('LARAVELMAIL_DELIVERABILITY_ENABLED', false), // DB gateways, caps, warming, failover
         'tracking' => env('LARAVELMAIL_TRACKING_ENABLED', false), // needs routes.enabled
         'webhooks' => env('LARAVELMAIL_WEBHOOKS_ENABLED', false), // needs routes.enabled
@@ -57,6 +58,7 @@ return [
         'prefix' => 'laravelmail',
         'middleware' => ['web'],
         'webhook_middleware' => ['api'],
+        'api_throttle' => '120,1',
         'public_throttle' => '10,1', // per-IP limit for public signup (requests,minutes)
     ],
 

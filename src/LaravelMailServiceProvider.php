@@ -9,7 +9,9 @@ use LaravelMail\Console\AutomationRunCommand;
 use LaravelMail\Console\DoctorCommand;
 use LaravelMail\Console\InstallCommand;
 use LaravelMail\Console\WarmingAdvanceCommand;
+use LaravelMail\Console\TokenCommand;
 use LaravelMail\Contracts\UserResolver;
+use LaravelMail\Http\Middleware\AuthenticateApiToken;
 use LaravelMail\Contracts\WorkspaceResolver;
 
 /**
@@ -28,6 +30,8 @@ class LaravelMailServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->app['router']->aliasMiddleware('laravelmail.token', AuthenticateApiToken::class);
+
         if (config('laravelmail.load_migrations')) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
@@ -37,7 +41,7 @@ class LaravelMailServiceProvider extends ServiceProvider
         }
 
         if ($this->app->runningInConsole()) {
-            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class, WarmingAdvanceCommand::class]);
+            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class, WarmingAdvanceCommand::class, TokenCommand::class]);
             $this->publishes([__DIR__.'/../config/laravelmail.php' => config_path('laravelmail.php')], 'laravelmail-config');
             $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'laravelmail-migrations');
         }
