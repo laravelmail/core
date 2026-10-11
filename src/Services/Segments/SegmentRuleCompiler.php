@@ -113,6 +113,7 @@ class SegmentRuleCompiler
             'campaign_sent' => $this->message($query, $t, $op === 'is', (int) $value, 'sent_at'),
             'campaign_opened' => $this->message($query, $t, $op === 'is', (int) $value, 'opened_at'),
             'campaign_clicked' => $this->message($query, $t, $op === 'is', (int) $value, 'clicked_at'),
+            default => throw new SegmentRuleException('Unsupported condition.'),
         };
     }
 
@@ -124,16 +125,18 @@ class SegmentRuleCompiler
         $col = "{$t}.{$field}";
         $lower = "LOWER({$col})";
         $needle = mb_strtolower((string) $value);
+        $like = str_replace(['!', '%', '_'], ['!!', '!%', '!_'], $needle); // '!' as LIKE escape char: same meaning on MySQL, Postgres and SQLite
 
         match ($op) {
             'equals' => $q->whereRaw("{$lower} = ?", [$needle]),
             'not_equals' => $q->where(fn ($x) => $x->whereNull($col)->orWhereRaw("{$lower} <> ?", [$needle])),
-            'contains' => $q->whereRaw("{$lower} LIKE ?", ['%'.$needle.'%']),
-            'not_contains' => $q->where(fn ($x) => $x->whereNull($col)->orWhereRaw("{$lower} NOT LIKE ?", ['%'.$needle.'%'])),
-            'starts_with' => $q->whereRaw("{$lower} LIKE ?", [$needle.'%']),
-            'ends_with' => $q->whereRaw("{$lower} LIKE ?", ['%'.$needle]),
+            'contains' => $q->whereRaw("{$lower} LIKE ? ESCAPE '!'", ['%'.$like.'%']),
+            'not_contains' => $q->where(fn ($x) => $x->whereNull($col)->orWhereRaw("{$lower} NOT LIKE ? ESCAPE '!'", ['%'.$like.'%'])),
+            'starts_with' => $q->whereRaw("{$lower} LIKE ? ESCAPE '!'", [$like.'%']),
+            'ends_with' => $q->whereRaw("{$lower} LIKE ? ESCAPE '!'", ['%'.$like]),
             'is_empty' => $q->where(fn ($x) => $x->whereNull($col)->orWhere($col, '')),
             'is_not_empty' => $q->whereNotNull($col)->where($col, '<>', ''),
+            default => throw new SegmentRuleException('Unsupported condition.'),
         };
     }
 
@@ -149,6 +152,7 @@ class SegmentRuleCompiler
             'not_equals' => $q->where(fn ($x) => $x->whereNull($path)->orWhere($path, '<>', $value)),
             'exists' => $q->whereNotNull($path),
             'not_exists' => $q->whereNull($path),
+            default => throw new SegmentRuleException('Unsupported condition.'),
         };
     }
 
@@ -159,6 +163,7 @@ class SegmentRuleCompiler
             'after' => $q->where("{$t}.created_at", '>', Carbon::parse((string) $value)->endOfDay()),
             'within_days' => $q->where("{$t}.created_at", '>=', now()->subDays((int) $value)),
             'older_than_days' => $q->where("{$t}.created_at", '<', now()->subDays((int) $value)),
+            default => throw new SegmentRuleException('Unsupported condition.'),
         };
     }
 

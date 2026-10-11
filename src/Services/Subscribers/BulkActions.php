@@ -35,7 +35,7 @@ class BulkActions
             $any = true;
         }
         if (! empty($selection['email_contains'])) {
-            $q->where('email', 'like', '%'.addcslashes(strtolower($selection['email_contains']), '%_\\').'%');
+            $q->whereRaw("LOWER(email) LIKE ? ESCAPE '!'", ['%'.str_replace(['!', '%', '_'], ['!!', '!%', '!_'], strtolower($selection['email_contains'])).'%']);
             $any = true;
         }
         if (! $any) {

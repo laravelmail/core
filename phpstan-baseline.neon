@@ -1,0 +1,1081 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\BlacklistCheck\:\:\$listed_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Console/BlacklistCheckCommand.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$ip\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Console/BlacklistCheckCommand.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$send_to_all\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$sent_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$subject\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$template_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/CampaignsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\BlacklistCheck\:\:\$listed_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/IpPoolsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\BlacklistCheck\:\:\$results\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/IpPoolsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$ip\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/IpPoolsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/IpPoolsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/RssController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\RssFeed\:\:\$last_error\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/RssController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$score\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/ScoringController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Segment\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SegmentsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Segment\:\:\$rules\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Http/Api/SegmentsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$meta\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$phone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$score\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$sms_consent_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$sms_opted_out_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$unsubscribed_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/SubscribersController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Http/Api/TagsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$preference_topic\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/TagsController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,LaravelMail\\Models\\Tag\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Http/Api/TagsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ApiToken\:\:\$expires_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Middleware/AuthenticateApiToken.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ApiToken\:\:\$last_used_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Middleware/AuthenticateApiToken.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ApiToken\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Middleware/AuthenticateApiToken.php
+
+		-
+			message: '#^Method LaravelMail\\Contracts\\WorkspaceResolver@anonymous/Http/Middleware/AuthenticateApiToken\.php\:32\:\:currentId\(\) never returns int so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Http/Middleware/AuthenticateApiToken.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/PreferencesController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/PreferencesController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/PreferencesController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/PreferencesController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<\(int\|string\),Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Http/PreferencesController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$double_opt_in\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/PublicSubscribeController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/PublicSubscribeController.php
+
+		-
+			message: '#^Method LaravelMail\\Contracts\\WorkspaceResolver@anonymous/Http/PublicSubscribeController\.php\:47\:\:currentId\(\) never returns int so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Http/PublicSubscribeController.php
+
+		-
+			message: '#^Parameter \#1 \$boolean of function abort_unless expects bool, LaravelMail\\Models\\Tag\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Http/PublicSubscribeController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$click_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$open_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$opened_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$subscriber_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\MessageUrl\:\:\$click_count\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\MessageUrl\:\:\$url\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Parameter \#1 \$boolean of function abort_unless expects bool, LaravelMail\\Models\\MessageUrl\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Http/TrackingController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$from_email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$from_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$hash\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$variant_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isSubscribed\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Parameter \#1 \$campaign of method LaravelMail\\Jobs\\SendCampaignMessage\:\:finish\(\) expects LaravelMail\\Models\\Campaign, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Parameter \#1 \$campaign of method LaravelMail\\Services\\Renderer\:\:renderSubject\(\) expects LaravelMail\\Models\\Campaign, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Parameter \#2 \$campaign of method LaravelMail\\Jobs\\SendCampaignMessage\:\:body\(\) expects LaravelMail\\Models\\Campaign, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Parameter \#2 \$subscriber of method LaravelMail\\Services\\Renderer\:\:renderSubject\(\) expects LaravelMail\\Models\\Subscriber, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Jobs/SendCampaignMessage.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ApiToken\:\:\$abilities\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/ApiToken.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$rules\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Models/Campaign.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$send_to_all\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Campaign.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Campaign.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$mailer\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Models/Gateway.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$hash\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Message.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$phone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Subscriber.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Subscriber.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$public_subscribe_enabled\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Tag.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$public_uuid\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Tag.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$current_day\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/WarmingPlan.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$schedule\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Models/WarmingPlan.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/AbTestService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/AbTestService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$node_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Automation\:\:\$active\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationJourney\:\:\$automation_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationJourney\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationJourney\:\:\$current_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationJourney\:\:\$log\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationStep\:\:\$alt_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationStep\:\:\$config\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationStep\:\:\$next_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationStep\:\:\$node_key\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\AutomationStep\:\:\$type\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Segment\:\:\$rules\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SmsMessage\:\:\$error\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SmsMessage\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 4
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$meta\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$score\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isSubscribed\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Parameter \#1 \$s of method LaravelMail\\Services\\Automations\\FlowEngine\:\:check\(\) expects LaravelMail\\Models\\Subscriber, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Parameter \#2 \$s of method LaravelMail\\Services\\Automations\\FlowEngine\:\:execute\(\) expects LaravelMail\\Models\\Subscriber, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Services/Automations/FlowEngine.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$content\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$subject\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Method LaravelMail\\Services\\CampaignDispatcher\:\:preview\(\) should return Illuminate\\Support\\Collection\<int, LaravelMail\\Models\\Subscriber\> but returns Illuminate\\Database\\Eloquent\\Collection\<int, Illuminate\\Database\\Eloquent\\Model\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:reject\(\) expects bool\|\(callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: bool\)\|Illuminate\\Database\\Eloquent\\Model, Closure\(LaravelMail\\Models\\Subscriber\)\: bool given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Services/CampaignDispatcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$hash\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Content/LinkRewriter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$recipient_email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Content/TagMerger.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:unsubscribeUrl\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Services/Content/TagMerger.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$ip\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/BlacklistMonitor.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 3
+			path: src/Services/Deliverability/BlacklistMonitor.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/BlacklistMonitor.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$active\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$daily_limit\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$failover_enabled\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$hourly_limit\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$current_day\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,LaravelMail\\Models\\Gateway\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Services/Deliverability/DeliverabilityOverview.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$active\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/GatewayRouter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$daily_limit\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/GatewayRouter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$failover_enabled\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/GatewayRouter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$hourly_limit\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/GatewayRouter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/GatewayRouter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$current_day\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$gateway_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$last_advanced_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$pause_complaint_rate\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\WarmingPlan\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$content\.$#'
+			identifier: property.notFound
+			count: 3
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$content\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Campaign\:\:\$subject\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\CampaignVariant\:\:\$content\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\CampaignVariant\:\:\$subject\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Renderer.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\RssFeed\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Rss/FeedCampaignBuilder.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\RssFeed\:\:\$url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Rss/FeedFetcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\RssFeed\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Rss/FeedFetcher.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ScoringRule\:\:\$event\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Scoring/ScoringService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ScoringRule\:\:\$max_total\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Scoring/ScoringService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ScoringRule\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Scoring/ScoringService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ScoringRule\:\:\$points\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Scoring/ScoringService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$score\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Scoring/ScoringService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Scoring/ScoringService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SmsMessage\:\:\$body\.$#'
+			identifier: property.notFound
+			count: 4
+			path: src/Services/Sms/SmsSender.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\SmsMessage\:\:\$to\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Sms/SmsSender.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Sms/SmsSender.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$phone\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Sms/SmsSender.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$sms_consent_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Sms/SmsSender.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$sms_opted_out_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Sms/SmsSender.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PreferenceCenter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PreferenceCenter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\PendingSubscription\:\:\$confirmed_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\PendingSubscription\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\PendingSubscription\:\:\$expires_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\PendingSubscription\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\PendingSubscription\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\PendingSubscription\:\:\$tag_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$unsubscribed_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$double_opt_in\.$#'
+			identifier: property.notFound
+			count: 3
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Tag\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/PublicSubscribe.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/SubscriberExporter.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/SubscriberExporter.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$first_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/SubscriberExporter.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$last_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/SubscriberExporter.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/SubscriberExporter.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$tags\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Subscribers/SubscriberExporter.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between non\-empty\-list\<string\|null\> and array\{\} will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: src/Services/Subscribers/SubscriberImporter.php
+
+		-
+			message: '#^Offset ''attached'' on array\{attached\: array, detached\: array, updated\: array\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: src/Services/Subscribers/TagService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Message\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Webhooks/BounceHandler.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Webhooks/BounceHandler.php

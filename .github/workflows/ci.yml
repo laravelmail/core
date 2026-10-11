@@ -12,6 +12,14 @@ jobs:
       - run: composer install --no-interaction --prefer-dist
       - run: composer validate --strict
       - run: vendor/bin/phpunit
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '8.4', extensions: sqlite3, pdo_sqlite, mbstring }
+      - run: composer install --no-interaction --prefer-dist
+      - run: vendor/bin/phpstan analyse --memory-limit=1G --no-progress
   host-fixture:
     runs-on: ubuntu-latest
     steps:

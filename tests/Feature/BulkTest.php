@@ -70,4 +70,12 @@ class BulkTest extends TestCase
         $this->assertStringContainsString('z@example.com', file_get_contents($f));
         unlink($f);
     }
+
+    public function test_email_contains_is_literal(): void
+    {
+        Subscriber::create(['email' => 'a_b@example.com']);
+        Subscriber::create(['email' => 'axb@example.com']);
+        $n = app(\LaravelMail\Services\Subscribers\BulkActions::class)->run('delete', ['email_contains' => 'a_b'], null, true);
+        $this->assertSame(1, $n);
+    }
 }

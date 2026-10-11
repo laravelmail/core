@@ -18,7 +18,7 @@ class SubscribersController
             $q->where('status', $r->string('status'));
         }
         if ($r->filled('email')) {
-            $q->where('email', 'like', '%'.addcslashes(strtolower((string) $r->input('email')), '%_\\').'%');
+            $q->whereRaw("LOWER(email) LIKE ? ESCAPE '!'", ['%'.str_replace(['!', '%', '_'], ['!!', '!%', '!_'], strtolower((string) $r->input('email'))).'%']);
         }
         if ($r->filled('tag')) {
             $q->whereHas('tags', fn ($t) => $t->where((new Tag)->getTable().'.name', $r->string('tag')));

@@ -73,4 +73,16 @@ class SegmentsTest extends TestCase
         $c->excludedSegments()->attach($excl->id, ['excluded' => true]);
         $this->assertSame(['ann@x.com'], app(CampaignDispatcher::class)->preview($c)->pluck('email')->all());
     }
+
+    public function test_contains_treats_percent_and_underscore_literally(): void
+    {
+        Subscriber::create(['email' => 'a@example.com', 'first_name' => '100% Ann']);
+        Subscriber::create(['email' => 'b@example.com', 'first_name' => '1000 Bob']);
+        Subscriber::create(['email' => 'c@example.com', 'first_name' => 'a_b']);
+        Subscriber::create(['email' => 'd@example.com', 'first_name' => 'axb']);
+        $c = app(\LaravelMail\Services\Segments\SegmentRuleCompiler::class);
+        $q = fn ($v) => $c->query(['match' => 'all', 'rules' => [['type' => 'field', 'field' => 'first_name', 'operator' => 'contains', 'value' => $v]]])->pluck('email')->all();
+        $this->assertSame(['a@example.com'], $q('0%'));
+        $this->assertSame(['c@example.com'], $q('a_b'));
+    }
 }

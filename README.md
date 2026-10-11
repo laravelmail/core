@@ -161,3 +161,9 @@ Off by default (`features.scoring`). Rules (`laravelmail_scoring_rules`) award p
 ## RSS (opt-in)
 
 Off by default (`features.rss`). Add feeds, fetch them (`php artisan laravelmail:rss-fetch`, not scheduled for you, or the API), and turn unused items into a **draft** campaign (`FeedCampaignBuilder::draft()` or `POST /rss-feeds/{id}/draft-campaign`). Nothing is ever sent automatically; someone reviews and dispatches the draft. Fetching is https-only, public hosts only (redirects re-checked on each hop), 10 s timeout, 2 MB cap, 100 items per fetch, no XML entity/DTD expansion, non-http(s) links dropped, item text HTML-escaped in the campaign. Items dedupe by GUID. RSS 2.0 and Atom. API (`rss:read|write`): `rss-feeds`, `/{id}/items`, `/{id}/fetch`, `/{id}/draft-campaign`.
+
+## Development and quality
+
+`composer test` runs PHPUnit. `composer analyse` runs PHPStan/Larastan at level 5 against PHP 8.3 semantics (with a baseline for model-property noise). `tests/host-fixture/run.sh` installs the package into a fresh Laravel app and checks discovery, publish, migrate, zero side effects, route/config cache and rollback. Full endpoint list: [docs/API.md](docs/API.md). Changes: [CHANGELOG.md](CHANGELOG.md).
+
+PHP: `composer.json` requires `^8.4`. Laravel 13 itself allows 8.3 and no 8.4-only syntax or functions were found, but 8.3 has not been executed, so the constraint is unchanged until it is tested in CI.
