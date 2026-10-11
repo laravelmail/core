@@ -35,6 +35,18 @@ class Campaign extends Model
         return $this->belongsToMany(Tag::class, config('laravelmail.table_prefix').'campaign_tag');
     }
 
+    public function segments(): BelongsToMany
+    {
+        return $this->belongsToMany(Segment::class, config('laravelmail.table_prefix').'campaign_segment')
+            ->wherePivot('excluded', false)->withPivot('excluded');
+    }
+
+    public function excludedSegments(): BelongsToMany
+    {
+        return $this->belongsToMany(Segment::class, config('laravelmail.table_prefix').'campaign_segment')
+            ->wherePivot('excluded', true)->withPivot('excluded');
+    }
+
     public function template(): BelongsTo
     {
         return $this->belongsTo(Template::class);
@@ -57,7 +69,19 @@ class Campaign extends Model
 
         if (! $this->send_to_all) {
             $tagIds = $this->tags()->pluck(config('laravelmail.table_prefix').'tags.id');
-            $q->whereHas('tags', fn ($t) => $t->whereIn(config('laravelmail.table_prefix').'tags.id', $tagIds));
+            $compiler = app(\LaravelMail\Services\Segments\SegmentRuleCompiler::class);
+            $segments = $this->segments()->get();
+            // Targets are tags OR segments (either matches).
+            $q->where(function ($w) use ($tagIds, $segments, $compiler) {
+                $w->whereHas('tags', fn ($t) => $t->whereIn(config('laravelmail.table_prefix').'tags.id', $tagIds));
+                foreach ($segments as $seg) {
+                    $w->orWhereIn('id', $compiler->idSubquery((array) $seg->rules));
+                }
+            });
+        }
+
+        foreach ($this->excludedSegments()->get() as $seg) {
+            $q->whereNotIn('id', app(\LaravelMail\Services\Segments\SegmentRuleCompiler::class)->idSubquery((array) $seg->rules));
         }
 
         return $q;

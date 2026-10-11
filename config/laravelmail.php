@@ -9,7 +9,7 @@ return [
     // Feature flags. All default OFF. `sending` is the master delivery switch.
     'features' => [
         'sending' => env('LARAVELMAIL_SENDING_ENABLED', false),
-        'tracking' => false,
+        'tracking' => env('LARAVELMAIL_TRACKING_ENABLED', false), // needs routes.enabled
         'webhooks' => false,
         'automations' => false,
         'sms' => false,
@@ -29,6 +29,8 @@ return [
     'sending' => [
         // Named host mailer (null = host default), or an inline transport array passed to Mail::build().
         'mailer' => env('LARAVELMAIL_MAILER'),
+        // Optional rotation pool: list of named mailers or inline transport arrays. Overrides `mailer` when non-empty.
+        'pool' => [],
         'queue' => env('LARAVELMAIL_QUEUE', 'default'),
         'connection' => env('LARAVELMAIL_QUEUE_CONNECTION'),
     ],

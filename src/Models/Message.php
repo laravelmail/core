@@ -18,7 +18,14 @@ class Message extends Model
 
     protected function casts(): array
     {
-        return ['sent_at' => 'datetime'];
+        return ['sent_at' => 'datetime', 'opened_at' => 'datetime', 'clicked_at' => 'datetime'];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (self $m) {
+            $m->hash ??= (string) \Illuminate\Support\Str::uuid();
+        });
     }
 
     public function campaign(): BelongsTo

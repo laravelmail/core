@@ -6,7 +6,7 @@ Done (slice 1): package skeleton, namespaced `LaravelMail\`, prefixed tables, wo
 
 Differences from the app's schema (needs a mapping layer before the hosted app can consume the package): string status instead of `campaign_statuses` ids, `laravelmail_` table prefix, `workspace_id` as nullable string.
 
-Next candidates: segments, suppression import, tracking pixel/click routes (opt-in), SMTP rotation, then AI/automations behind flags.
+Slice 2 done: segments (rule-tree JSON compatible with the app), message tracking + link rewriting + unsubscribe tag (flag-gated), SMTP rotation pool, PhoneNumber helper. Next: MJML compiler (optional node), webhook signature verification, DNSBL resolver, automations flow validator, then the schema-dependent port.
 
 ## Reconciliation with the docs-lane map (Oct 10)
 

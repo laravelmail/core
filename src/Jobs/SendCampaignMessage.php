@@ -54,7 +54,7 @@ class SendCampaignMessage implements ShouldQueue
                 ->to($subscriber->email)
                 ->send(new CampaignMail(
                     $renderer->renderSubject($campaign, $subscriber),
-                    $renderer->render($campaign, $subscriber),
+                    $this->body($renderer, $campaign, $subscriber, $message),
                     $campaign->from_email,
                     $campaign->from_name,
                 ));
@@ -66,10 +66,26 @@ class SendCampaignMessage implements ShouldQueue
         $this->finish($campaign);
     }
 
+    private function body(Renderer $renderer, Campaign $campaign, $subscriber, Message $message): string
+    {
+        $html = $renderer->render($campaign, $subscriber);
+        $html = app(\LaravelMail\Services\Content\TagMerger::class)->merge($html, $message->setRelation('subscriber', $subscriber), false);
+
+        // Tracking only when explicitly enabled AND the routes exist.
+        if (config('laravelmail.features.tracking') && \Illuminate\Support\Facades\Route::has('laravelmail.track.open')) {
+            $html = app(\LaravelMail\Services\Content\LinkRewriter::class)->rewrite($html, $message);
+            $html = app(\LaravelMail\Services\Content\PixelInjector::class)->inject($html, route('laravelmail.track.open', ['message' => $message->hash]));
+        }
+
+        return $html;
+    }
+
     /** Package-owned mailer: an inline transport array (Mail::build) or a named host mailer. Never rewrites host mail config. */
     private function mailer()
     {
-        $m = config('laravelmail.sending.mailer');
+        $pool = array_values((array) config('laravelmail.sending.pool', []));
+        // Round-robin rotation across the pool (named mailers or inline transport arrays), keyed by message id.
+        $m = $pool !== [] ? $pool[$this->messageId % count($pool)] : config('laravelmail.sending.mailer');
 
         return is_array($m) ? Mail::build($m) : Mail::mailer($m);
     }

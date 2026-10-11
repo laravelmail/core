@@ -52,6 +52,22 @@ Implement `LaravelMail\Contracts\WorkspaceResolver` and point `laravelmail.works
 
 Set `LARAVELMAIL_ROUTES_ENABLED=true` to expose a signed unsubscribe URL (`Subscriber::unsubscribeUrl()`), under `laravelmail.routes.prefix`.
 
+## Segments (slice 2)
+
+Rule trees use the same JSON shape as the hosted app (`{"match":"all|any","not":false,"rules":[...]}`). Supported conditions: `field`, `meta`, `status`, `created_at`, `tag`, `segment`, `campaign_sent`, `campaign_opened`, `campaign_clicked`. Attach with `$campaign->segments()->attach($id, ['excluded' => false])` (or `excludedSegments()`); a campaign targets its tags OR segments, minus excluded segments.
+
+```php
+app(\LaravelMail\Services\Segments\SegmentRuleCompiler::class)->query($segment->rules)->get();
+```
+
+## Tracking (slice 2, opt-in)
+
+Set `LARAVELMAIL_ROUTES_ENABLED=true` and `LARAVELMAIL_TRACKING_ENABLED=true`. Then sends get an open pixel, rewritten http(s) links (redirects only to URLs stored for that message) and a `{{unsubscribe_url}}` merge tag. Without both flags, nothing is rewritten or exposed.
+
+## SMTP rotation (slice 2)
+
+`laravelmail.sending.pool` takes a list of named mailers or inline transport arrays; messages round-robin across them. The pool never modifies host `mail` config.
+
 ## Not in this slice
 
 Automations, AI, SMS, IMAP inbox processing, tracking, A/B tests, segments, UI. They stay in the hosted app and will be extracted behind their own disabled-by-default flags. See `docs/EXTRACTION.md`.
