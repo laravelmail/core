@@ -15,6 +15,8 @@ return [
         'webhooks' => env('LARAVELMAIL_WEBHOOKS_ENABLED', false), // needs routes.enabled
         'automations' => env('LARAVELMAIL_AUTOMATIONS_ENABLED', false),
         'sms' => false,
+        'crm' => false,           // deals pipeline (API)
+        'conversations' => false, // 1:1 threads with subscribers (API)
         'forms' => env('LARAVELMAIL_FORMS_ENABLED', false), // public signup + preference center; needs routes.enabled
         'rss' => false,
         'scoring' => false,
@@ -50,6 +52,12 @@ return [
         'postmark' => env('LARAVELMAIL_WEBHOOK_POSTMARK_TOKEN'),
         'sendgrid' => env('LARAVELMAIL_WEBHOOK_SENDGRID_PUBLIC_KEY'),
         'ses' => env('LARAVELMAIL_WEBHOOK_SES_TOPIC_ARNS'), // comma separated
+    ],
+
+    'import' => [
+        // Connection that holds the hosted app's tables, for `laravelmail:import-app`. Read-only; null = not configured.
+        'connection' => env('LARAVELMAIL_IMPORT_CONNECTION'),
+        'tables' => [], // override source table names, e.g. ['subscribers' => 'my_subscribers']
     ],
 
     'sms' => [

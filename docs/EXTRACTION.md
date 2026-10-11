@@ -38,3 +38,6 @@ Rules, idempotent ledger, tracking and tag hooks, segment and flow conditions, d
 
 ## Slice 12: RSS
 Feed model, safe fetcher (RSS/Atom), GUID dedupe, draft-campaign builder, command, API; shared `SafeUrl` SSRF guard (also used by the automation webhook step). Not covered: auto-created/auto-sent feed campaigns, per-feed schedules, conditional GET (ETag), DNS-rebinding pinning.
+
+## Slice 13: CRM, conversations, mapping layer
+Deals, conversations (+messages), `laravelmail_import_map`, `AppImporter` / `laravelmail:import-app`. Decision: clean schema + mapping (Stefan, Oct 11).

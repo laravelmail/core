@@ -132,5 +132,25 @@ if (config('laravelmail.features.api')) {
             Route::post('rss-feeds/{id}/fetch', [Api\RssController::class, 'fetch'])->middleware($a('rss:write'))->whereNumber('id')->name('rss.fetch');
             Route::post('rss-feeds/{id}/draft-campaign', [Api\RssController::class, 'draft'])->middleware($a('rss:write'))->whereNumber('id')->name('rss.draft');
         }
+
+        // CRM deals (needs features.crm too).
+        if (config('laravelmail.features.crm')) {
+            Route::get('deals/summary', [Api\DealsController::class, 'summary'])->middleware($a('deals:read'))->name('deals.summary');
+            Route::get('deals', [Api\DealsController::class, 'index'])->middleware($a('deals:read'))->name('deals.index');
+            Route::post('deals', [Api\DealsController::class, 'store'])->middleware($a('deals:write'))->name('deals.store');
+            Route::get('deals/{id}', [Api\DealsController::class, 'show'])->middleware($a('deals:read'))->whereNumber('id')->name('deals.show');
+            Route::patch('deals/{id}', [Api\DealsController::class, 'update'])->middleware($a('deals:write'))->whereNumber('id')->name('deals.update');
+            Route::delete('deals/{id}', [Api\DealsController::class, 'destroy'])->middleware($a('deals:write'))->whereNumber('id')->name('deals.destroy');
+        }
+
+        // Conversations (needs features.conversations too).
+        if (config('laravelmail.features.conversations')) {
+            Route::get('conversations', [Api\ConversationsController::class, 'index'])->middleware($a('conversations:read'))->name('conversations.index');
+            Route::post('conversations', [Api\ConversationsController::class, 'store'])->middleware($a('conversations:write'))->name('conversations.store');
+            Route::get('conversations/{id}', [Api\ConversationsController::class, 'show'])->middleware($a('conversations:read'))->whereNumber('id')->name('conversations.show');
+            Route::post('conversations/{id}/replies', [Api\ConversationsController::class, 'reply'])->middleware($a('conversations:write'))->whereNumber('id')->name('conversations.reply');
+            Route::post('conversations/{id}/close', [Api\ConversationsController::class, 'close'])->middleware($a('conversations:write'))->whereNumber('id')->name('conversations.close');
+            Route::post('conversations/{id}/read', [Api\ConversationsController::class, 'read'])->middleware($a('conversations:write'))->whereNumber('id')->name('conversations.read');
+        }
     });
 }

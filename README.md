@@ -171,3 +171,22 @@ PHP: `composer.json` requires `^8.4`. Laravel 13 itself allows 8.3 and no 8.4-on
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## CRM deals and conversations (opt-in)
+
+`features.crm` enables the deals pipeline API (stages lead/qualified/proposal/won/lost, `deals/summary`). `features.conversations` enables one-to-one threads with subscribers: inbound replies are recorded idempotently (`ConversationService::recordInbound()`, wire it to your own inbound webhook) and reopen a closed thread; agent replies are recorded, and only emailed on an explicit `deliver()` / `send: true` with `features.sending` on and a subscribed, unsuppressed recipient. See [docs/API.md](docs/API.md).
+
+## Adopting the package next to the hosted app (mapping layer)
+
+The package keeps its own clean schema (`laravelmail_` tables). To bring data across from the hosted app's database:
+
+```bash
+# 1. a read-only connection to the app DB, e.g. config/database.php connection "app", then
+LARAVELMAIL_IMPORT_CONNECTION=app
+# 2. dry run (default): shows what would be created, writes nothing
+php artisan laravelmail:import-app --workspace=12
+# 3. do it
+php artisan laravelmail:import-app --workspace=12 --commit
+```
+
+One workspace per run. It reads tags, subscribers (with tag links), deals, conversations and their messages, and records old-to-new ids in `laravelmail_import_map`, so re-running only adds what is new and an existing package subscriber is reused, never overwritten. It never writes to the app database. SMS consent is only carried over when the app recorded a consent date. Override source table names with `laravelmail.import.tables`.

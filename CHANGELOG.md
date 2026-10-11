@@ -19,6 +19,9 @@ All notable changes. Unreleased until Stefan tags; no version tags have been cre
 - Commands: install, doctor, token, export, warming-advance, blacklist-check, score-decay, rss-fetch, automation run.
 - CI: PHPUnit, fresh-host integration fixture, PHPStan (level 5 with baseline).
 
+### Added (batch 16)
+- CRM deals (`features.crm`), conversations (`features.conversations`), and the app-adoption mapping layer: `laravelmail:import-app` (read-only on the source, dry run by default, one workspace per run, repeatable via an id map).
+
 ### Licence
 - MIT (decided by Stefan). Schema strategy decided: clean package schema plus a mapping layer for app adoption.
 
@@ -33,4 +36,5 @@ All notable changes. Unreleased until Stefan tags; no version tags have been cre
 
 ### Known gaps
 - Not yet run against MySQL/PostgreSQL; PHP 8.3 not run (see README requirements).
-- Not extracted: store/CMS integrations, conversations, CRM deals, AI, mailbox/IMAP.
+- Not extracted yet: store/CMS integrations, AI. Out of scope: mailbox/IMAP.
+- Importer covers tags, subscribers, deals, conversations; not yet campaigns, templates, segments, automations, suppressions.

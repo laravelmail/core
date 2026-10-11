@@ -41,7 +41,7 @@ class LaravelMailServiceProvider extends ServiceProvider
         }
 
         if ($this->app->runningInConsole()) {
-            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class, WarmingAdvanceCommand::class, TokenCommand::class, \LaravelMail\Console\RssFetchCommand::class, \LaravelMail\Console\ScoreDecayCommand::class, \LaravelMail\Console\BlacklistCheckCommand::class, \LaravelMail\Console\ExportCommand::class]);
+            $this->commands([InstallCommand::class, DoctorCommand::class, AutomationRunCommand::class, WarmingAdvanceCommand::class, TokenCommand::class, \LaravelMail\Console\ImportAppCommand::class, \LaravelMail\Console\RssFetchCommand::class, \LaravelMail\Console\ScoreDecayCommand::class, \LaravelMail\Console\BlacklistCheckCommand::class, \LaravelMail\Console\ExportCommand::class]);
             $this->publishes([__DIR__.'/../config/laravelmail.php' => config_path('laravelmail.php')], 'laravelmail-config');
             $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')], 'laravelmail-migrations');
         }

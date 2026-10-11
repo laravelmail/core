@@ -55,6 +55,78 @@ parameters:
 			path: src/Http/Api/CampaignsController.php
 
 		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$closed_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$currency\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$deals\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$expected_close_on\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$notes\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$stage\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$subscriber_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$value\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Http/Api/DealsController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,LaravelMail\\Models\\Deal\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Http/Api/DealsController.php
+
+		-
 			message: '#^Access to an undefined property LaravelMail\\Models\\BlacklistCheck\:\:\$listed_count\.$#'
 			identifier: property.notFound
 			count: 1
@@ -415,6 +487,30 @@ parameters:
 			path: src/Models/Campaign.php
 
 		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Conversation\:\:\$status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Conversation.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$closed_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Deal.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$currency\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Models/Deal.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Deal\:\:\$stage\.$#'
+			identifier: property.notFound
+			count: 3
+			path: src/Models/Deal.php
+
+		-
 			message: '#^Access to an undefined property LaravelMail\\Models\\Gateway\:\:\$mailer\.$#'
 			identifier: property.notFound
 			count: 2
@@ -673,6 +769,48 @@ parameters:
 			path: src/Services/Content/TagMerger.php
 
 		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$subject\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$subscriber\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Conversation\:\:\$workspace_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ConversationMessage\:\:\$body\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ConversationMessage\:\:\$sender_type\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\ConversationMessage\:\:\$sent_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
+			message: '#^Method LaravelMail\\Services\\Conversations\\ConversationService\:\:add\(\) should return LaravelMail\\Models\\ConversationMessage but returns Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Services/Conversations/ConversationService.php
+
+		-
 			message: '#^Access to an undefined property LaravelMail\\Models\\SendingIp\:\:\$ip\.$#'
 			identifier: property.notFound
 			count: 1
@@ -809,6 +947,24 @@ parameters:
 			identifier: property.notFound
 			count: 2
 			path: src/Services/Deliverability/WarmingService.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$phone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Import/AppImporter.php
+
+		-
+			message: '#^Access to an undefined property LaravelMail\\Models\\Subscriber\:\:\$sms_consent_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Services/Import/AppImporter.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\ConnectionInterface\:\:getSchemaBuilder\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: src/Services/Import/AppImporter.php
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$content\.$#'

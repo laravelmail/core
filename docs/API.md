@@ -1,7 +1,7 @@
 # HTTP API reference
 
 Base: `/laravelmail/api/v1` (prefix configurable via `routes.prefix`). Off unless `LARAVELMAIL_ROUTES_ENABLED=true` and `LARAVELMAIL_API_ENABLED=true`.
-Some groups also need their own flag: deliverability (`ips`, `ip-pools`), scoring (`scoring-rules`, score events), rss (`rss-feeds`).
+Some groups also need their own flag: deliverability (`ips`, `ip-pools`), scoring (`scoring-rules`, score events), rss (`rss-feeds`), crm (`deals`), conversations (`conversations`).
 
 ## Auth
 
@@ -70,6 +70,18 @@ JSON in and out. Validation errors are `422`. Unknown or non-numeric ids are `40
 | GET | `/rss-feeds/{id}/items` | `rss:read` |
 | POST | `/rss-feeds/{id}/fetch` | `rss:write` |
 | POST | `/rss-feeds/{id}/draft-campaign` | `rss:write` |
+| GET | `/deals/summary` | `deals:read` |
+| GET | `/deals` | `deals:read` |
+| POST | `/deals` | `deals:write` |
+| GET | `/deals/{id}` | `deals:read` |
+| PATCH | `/deals/{id}` | `deals:write` |
+| DELETE | `/deals/{id}` | `deals:write` |
+| GET | `/conversations` | `conversations:read` |
+| POST | `/conversations` | `conversations:write` |
+| GET | `/conversations/{id}` | `conversations:read` |
+| POST | `/conversations/{id}/replies` | `conversations:write` |
+| POST | `/conversations/{id}/close` | `conversations:write` |
+| POST | `/conversations/{id}/read` | `conversations:write` |
 
 ## Behaviour worth knowing
 
@@ -82,3 +94,5 @@ JSON in and out. Validation errors are `422`. Unknown or non-numeric ids are `40
 - `POST /segments` validates the rule tree on write (`422` on a bad tree).
 - `POST /rss-feeds/{id}/draft-campaign` only creates a draft (`409` if no unused items).
 - `PATCH /ips/{id}` can set `active` or `paused`; `listed` is managed by checks.
+- `deals`: stages lead, qualified, proposal, won, lost (same names as the app). Moving to won/lost stamps `closed_at`; moving back clears it.
+- `conversations`: `POST /conversations/{id}/replies` only records the reply. `send: true` additionally needs the `conversations:send` ability, `features.sending`, and a subscribed, unsuppressed recipient; otherwise `emailed` is false.
