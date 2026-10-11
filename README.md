@@ -68,6 +68,24 @@ Set `LARAVELMAIL_ROUTES_ENABLED=true` and `LARAVELMAIL_TRACKING_ENABLED=true`. T
 
 `laravelmail.sending.pool` takes a list of named mailers or inline transport arrays; messages round-robin across them. The pool never modifies host `mail` config.
 
+## Import, tags (slice 3)
+
+```php
+app(\LaravelMail\Services\Subscribers\SubscriberImporter::class)->importFile($path, ['imported']);
+// header: email,first_name,last_name,tags   (tags separated by ;)
+```
+Skips suppressed addresses, never re-subscribes someone who unsubscribed, sends nothing. `TagService` attaches/detaches tags and bulk-tags a query in chunks.
+
+## Webhooks (slice 3, opt-in)
+
+`LARAVELMAIL_WEBHOOKS_ENABLED=true` with `routes.enabled` exposes `POST {prefix}/webhooks/{mailgun|postmark}` on `routes.webhook_middleware` (default `api`, no CSRF). Requests must pass the provider secret (`laravelmail.webhooks.*`), otherwise 403. Hard bounces and complaints add a suppression and unsubscribe the address; soft bounces do nothing. `WebhookAuth` also verifies SendGrid and SNS signatures for hosts that wire those endpoints.
+
+## MJML, deliverability, automations (slice 3)
+
+- `MjmlCompiler`: optional, run `npm install` in `resources/mjml`; `compileOrPassThrough()` returns raw HTML when node/mjml is missing. `HtmlToMjml::wrap()` wraps HTML as an `mj-raw` block.
+- `BlacklistChecker` + `DnsblResolver`: DNSBL lookups, log-only.
+- `FlowGraphValidator`: validates automation flow graphs (dangling or self edges, loops, missing conditions, non-https webhooks). The flow engine itself is not extracted yet.
+
 ## Not in this slice
 
 Automations, AI, SMS, IMAP inbox processing, tracking, A/B tests, segments, UI. They stay in the hosted app and will be extracted behind their own disabled-by-default flags. See `docs/EXTRACTION.md`.

@@ -1,0 +1,1 @@
+{ "private": true, "description": "Optional MJML compiler. Run `npm install` here to enable MJML compilation.", "dependencies": { "mjml": "^4.15.0" } }

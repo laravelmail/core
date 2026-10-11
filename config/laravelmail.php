@@ -10,7 +10,7 @@ return [
     'features' => [
         'sending' => env('LARAVELMAIL_SENDING_ENABLED', false),
         'tracking' => env('LARAVELMAIL_TRACKING_ENABLED', false), // needs routes.enabled
-        'webhooks' => false,
+        'webhooks' => env('LARAVELMAIL_WEBHOOKS_ENABLED', false), // needs routes.enabled
         'automations' => false,
         'sms' => false,
         'forms' => false,
@@ -35,11 +35,27 @@ return [
         'connection' => env('LARAVELMAIL_QUEUE_CONNECTION'),
     ],
 
+    // Optional MJML support (needs node + `npm install` in resources/mjml). Falls back to raw HTML when absent.
+    'mjml' => [
+        'node' => env('MJML_NODE_BINARY'),
+        'script' => null, // default: <package>/resources/mjml/compile.cjs
+    ],
+
+    // Provider webhook secrets (features.webhooks must be on). `allow_unsigned` is an emergency switch: keep false.
+    'webhooks' => [
+        'allow_unsigned' => false,
+        'mailgun' => env('LARAVELMAIL_WEBHOOK_MAILGUN_KEY'),
+        'postmark' => env('LARAVELMAIL_WEBHOOK_POSTMARK_TOKEN'),
+        'sendgrid' => env('LARAVELMAIL_WEBHOOK_SENDGRID_PUBLIC_KEY'),
+        'ses' => env('LARAVELMAIL_WEBHOOK_SES_TOPIC_ARNS'), // comma separated
+    ],
+
     'routes' => [
         // Public HTTP endpoints (unsubscribe). Off by default.
         'enabled' => env('LARAVELMAIL_ROUTES_ENABLED', false),
         'prefix' => 'laravelmail',
         'middleware' => ['web'],
+        'webhook_middleware' => ['api'],
     ],
 
     // Table prefix, so we never collide with host tables.

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use LaravelMail\Http\TrackingController;
 use LaravelMail\Http\UnsubscribeController;
+use LaravelMail\Http\WebhookController;
 
 Route::group([
     'prefix' => config('laravelmail.routes.prefix'),
@@ -18,3 +19,14 @@ Route::group([
         Route::get('t/c/{message}/{url}', [TrackingController::class, 'click'])->name('track.click');
     }
 });
+
+// Provider webhooks: only when features.webhooks is on, stateless middleware (no CSRF), always authenticated.
+if (config('laravelmail.features.webhooks')) {
+    Route::group([
+        'prefix' => config('laravelmail.routes.prefix'),
+        'middleware' => config('laravelmail.routes.webhook_middleware'),
+        'as' => 'laravelmail.',
+    ], function () {
+        Route::post('webhooks/{provider}', WebhookController::class)->name('webhooks');
+    });
+}
